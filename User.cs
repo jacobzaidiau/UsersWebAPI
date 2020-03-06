@@ -35,5 +35,7 @@ namespace UsersWebAPI
         public string Phone { get; set; }
         [StringLength(50)]
         public string Mobile { get; set; }
+
+        public ICollection<UserGroup> UserGroups { get; set; }
     }
 }

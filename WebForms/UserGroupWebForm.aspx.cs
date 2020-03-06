@@ -12,6 +12,26 @@ namespace UsersWebAPI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            UserDBContext userDBContext = new UserDBContext();
+            var query = from user in userDBContext.Users
+                        from userGroup in user.UserGroups
+                        select new
+                        {
+                            Firstname = user.Firstname,
+                            Lastname = user.Lastname,
+                            DateOfBirth = user.DateOfBirth,
+
+                            Email = user.Email,
+                            Phone = user.Phone,
+                            Mobile = user.Mobile,
+
+                            GroupName = userGroup.Group.GroupName,
+                            Description = userGroup.Group.Description
+
+
+                        };
+            GridView1.DataSource = query.ToList();
+            GridView1.DataBind();
 
         }
 

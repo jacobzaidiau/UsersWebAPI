@@ -59,6 +59,29 @@ namespace UsersWebAPI
             userDBContext.Users.Add(user1);
             userDBContext.Users.Add(user2);
             userDBContext.Users.Add(user3);
+
+            UserGroup userGroup1 = new UserGroup()
+            {
+                UserId = 1,
+                GroupId = 1
+            };
+
+            UserGroup userGroup2 = new UserGroup()
+            {
+                UserId = 1,
+                GroupId = 2
+            };
+
+            UserGroup userGroup3 = new UserGroup()
+            {
+                UserId = 1,
+                GroupId = 3
+            };
+
+            userDBContext.UserGroups.Add(userGroup1);
+            userDBContext.UserGroups.Add(userGroup2);
+            userDBContext.UserGroups.Add(userGroup3);
+
             base.Seed(userDBContext);
         }
 

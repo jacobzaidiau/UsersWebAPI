@@ -15,5 +15,7 @@ namespace UsersWebAPI
         public string GroupName { get; set; }
         [StringLength(256)]
         public string Description { get; set; }
+
+        public ICollection<UserGroup> UserGroups { get; set; }
     }
 }
