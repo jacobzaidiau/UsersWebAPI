@@ -74,6 +74,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Global.asax" />
     <Content Include="WebForms\AddUserGroupWebForm.aspx" />
     <Content Include="WebForms\CreateGroupWebForm.aspx" />
     <Content Include="WebForms\CreateUserWebForm.aspx" />
@@ -84,11 +85,19 @@
     <Content Include="WebForms\MainWebForm.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Group.cs" />
+    <Compile Include="User.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="UserDBContext.cs" />
+    <Compile Include="UserDBContextSeeder.cs" />
+    <Compile Include="UserRepository.cs" />
     <Compile Include="WebForms\AddUserGroupWebForm.aspx.cs">
       <DependentUpon>AddUserGroupWebForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
