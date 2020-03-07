@@ -12,6 +12,11 @@ namespace UsersWebAPI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Page.IsPostBack) 
+            {
+                return;
+            }
+            GridView1.DataSourceID = ObjectDataSource1.ID;
             ClientScript.GetPostBackEventReference(this, string.Empty);
         }
 
@@ -36,9 +41,12 @@ namespace UsersWebAPI
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
-            Button button = (Button)sender;
-            Session["senderID"] = button.ID;
-            Response.Redirect(Resources.CreateUserWebForm, false);
+            if (!string.IsNullOrEmpty((string)Session["userID"]))
+            {
+                Button button = (Button)sender;
+                Session["senderID"] = button.ID;
+                Response.Redirect(Resources.CreateUserWebForm, false);
+            }
         }
 
         protected void btnRemove_Click(object sender, EventArgs e)
@@ -52,6 +60,7 @@ namespace UsersWebAPI
                              select d).Single();
                 userDBContext.Users.Remove(user);
                 userDBContext.SaveChanges();
+                Session["userID"] = null;
             }
             else
             {
