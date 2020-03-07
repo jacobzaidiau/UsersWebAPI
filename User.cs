@@ -18,6 +18,9 @@ namespace UsersWebAPI
         [StringLength(128)]
         public string Password { get; set; }
 
+        [StringLength(128)]
+        public string Salt { get; set; }
+
         // Personal Details
         [Required]
         [StringLength(100)]

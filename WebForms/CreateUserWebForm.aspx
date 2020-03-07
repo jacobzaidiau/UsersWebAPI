@@ -9,13 +9,18 @@
 <body>
     <form id="form1" runat="server">
         <div>
+            <asp:Label ID="lblMessage" runat="server" Font-Bold="True" ForeColor="Red"></asp:Label>
+            <br />
+            <br />
             User Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox>
             <br />
             <br />
             <asp:Label ID="Label3" runat="server" Text="Password"></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtPassword" runat="server" AutoPostBack="True" OnTextChanged="txtPassword_TextChanged"></asp:TextBox>
+            &nbsp;
+            <asp:Label ID="lblPasswordStrength" runat="server" Font-Size="Smaller" Text="Label"></asp:Label>
             <br />
             <br />
             <asp:Label ID="Label1" runat="server" Text="First Name"></asp:Label>

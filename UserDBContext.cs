@@ -12,5 +12,29 @@ namespace UsersWebAPI
         public DbSet<User> Users { get; set; }
         public DbSet<UserGroup> UserGroups { get; set; }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder) 
+        {
+            modelBuilder.Entity<User>()
+                .Map(map =>
+                {
+                    map.Properties(p => new
+                    {
+                        p.UserId, p.Username, p.Password,
+                        p.Firstname, p.Lastname, p.DateOfBirth,
+                        p.Email, p.Phone, p.Mobile
+                    });
+                    map.ToTable("Users");
+                })
+                .Map(map =>
+                {
+                    map.Properties(p => new
+                    {
+                        p.UserId, p.Salt
+                    });
+                    map.ToTable("UserSalts");
+                });
+            base.OnModelCreating(modelBuilder);
+        }
+
     }
 }
