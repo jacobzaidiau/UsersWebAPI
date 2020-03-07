@@ -72,37 +72,43 @@ namespace UsersWebAPI.WebForms
         {
             lblMessage.Text = "";
             string username = txtUsername.Text;
-            string password = txtPassword.Text;
+            string password = (string)Session["password"];
+            if (string.IsNullOrEmpty(password))
+                password = "";
             UserDBContext userDBContext = new UserDBContext();
 
             List<User> accountUser = (from d in userDBContext.Users
                                 where d.Username == username
                                 select d).ToList();
 
-            if (accountUser.Count > 0) 
-            {
-                lblMessage.Text = "Error: User already exists.";
-                return;
-            }
+           
 
-            if (password.Length < 8 || !password.Any(c => char.IsUpper(c)))
-            {
-                lblMessage.Text = "Please enter a valid password.";
-                return;
-            }
-
-            byte[] salt = CreateSalt();
-            byte[] hash = HashPassword(txtPassword.Text, salt);
-            bool success = VerifyHash(txtPassword.Text, salt, hash);
+            
 
 
             if ((string)Session["senderID"] == "btnCreate")
             {
 
+                if (accountUser.Count > 0 && (string)Session["senderID"] == "btnCreate")
+                {
+                    lblMessage.Text = "Error: User already exists.";
+                    return;
+                }
+
+                if (password.Length < 8 || !password.Any(c => char.IsUpper(c)))
+                {
+                    lblMessage.Text = "Please enter a valid password.";
+                    return;
+                }
+
+                byte[] salt = CreateSalt();
+                byte[] hash = HashPassword(password, salt);
+                bool success = VerifyHash(password, salt, hash);
+
 
                 if (
                     !string.IsNullOrEmpty(txtUsername.Text) &&
-                    !string.IsNullOrEmpty(txtPassword.Text) &&
+                    !string.IsNullOrEmpty(password) &&
                     !string.IsNullOrEmpty(txtFirstname.Text) &&
                     !string.IsNullOrEmpty(txtLastname.Text) &&
                     !string.IsNullOrEmpty(txtEmail.Text)
@@ -131,23 +137,37 @@ namespace UsersWebAPI.WebForms
                     return;
                 }
 
-
+                Session["password"] = null;
                 Button button = (Button)sender;
                 Session["senderID"] = button.ID;
                 Response.Redirect(Resources.UserWebForm, false);
             }
             else if ((string)Session["senderID"] == "btnUpdate") 
             {
+                if (!string.IsNullOrEmpty(password) && (password.Length < 8 || !password.Any(c => char.IsUpper(c))))
+                {
+                    lblMessage.Text = "Please enter a valid password.";
+                    return;
+                }
+
                 int x = Convert.ToInt32(Session["userID"]);
                 User user = (from d in userDBContext.Users
                              where d.UserId == x
                              select d).Single();
 
-                if (!string.IsNullOrEmpty(txtPassword.Text))
-                    user.Password = txtPassword.Text;
+                if (!string.IsNullOrEmpty(password))
+                {
+                    byte[] salt = CreateSalt();
+                    byte[] hash = HashPassword(password, salt);
+                    bool success = VerifyHash(password, salt, hash);
+
+                    user.Password = Convert.ToBase64String(hash);
+                    user.Salt = Convert.ToBase64String(salt);
+                }
 
                 user.Firstname = txtFirstname.Text;
                 user.Lastname = txtLastname.Text;
+                if (!string.IsNullOrEmpty(txtDateOfBirth.Text))
                 user.DateOfBirth = DateTime.Parse(txtDateOfBirth.Text);
 
                 user.Email = txtEmail.Text;
@@ -155,11 +175,17 @@ namespace UsersWebAPI.WebForms
                 user.Mobile = txtMobile.Text;
 
                 userDBContext.SaveChanges();
+
+                Session["password"] = null;
+                Button button = (Button)sender;
+                Session["senderID"] = button.ID;
+                Response.Redirect(Resources.UserWebForm, false);
             }
         }
 
         protected void btnBack_Click(object sender, EventArgs e)
         {
+            Session["password"] = null;
             Button button = (Button)sender;
             Session["senderID"] = button.ID;
             Response.Redirect(Resources.UserWebForm, false);
@@ -171,6 +197,10 @@ namespace UsersWebAPI.WebForms
         {
             lblPasswordStrength.Text = "";
             string x = txtPassword.Text;
+            if (!string.IsNullOrEmpty(x)) 
+            {
+                Session["password"] = x;
+            }
             if (x.Length < 8 || !x.Any(c => char.IsUpper(c)))
             {
                 lblPasswordStrength.Text = "Weak";
