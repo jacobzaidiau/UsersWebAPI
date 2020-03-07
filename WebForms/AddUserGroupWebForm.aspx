@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AddUserGroupWebForm.aspx.cs" Inherits="UsersWebAPI.AddUserGroupWebForm" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AddUserGroupWebForm.aspx.cs" Inherits="UsersWebAPI.AddUserGroupWebForm" EnableEventValidation="false" %>
 
 <!DOCTYPE html>
 
@@ -9,7 +9,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" DataSourceID="ObjectDataSource1" ForeColor="#333333" GridLines="None">
+            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" DataSourceID="ObjectDataSource1" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnRowDataBound="GridView1_RowDataBound">
                 <AlternatingRowStyle BackColor="White" />
                 <Columns>
                     <asp:BoundField DataField="GroupId" HeaderText="GroupId" SortExpression="GroupId" />

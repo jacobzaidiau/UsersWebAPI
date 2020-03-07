@@ -17,9 +17,14 @@ namespace UsersWebAPI
 
         protected void btnGroups_Click(object sender, EventArgs e)
         {
-            Button button = (Button)sender;
-            Session["senderID"] = button.ID;
-            Response.Redirect(Resources.UserGroupWebForm, false);
+            if (!string.IsNullOrEmpty((string)Session["userID"]))
+            {
+                Button button = (Button)sender;
+                Session["senderID"] = button.ID;
+                Response.Redirect(Resources.UserGroupWebForm, false);
+            }
+            else 
+            { }
         }
 
         protected void btnCreate_Click(object sender, EventArgs e)

@@ -17,6 +17,26 @@ namespace UsersWebAPI.WebForms
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+
+            UserDBContext userDBContext = new UserDBContext();
+
+            if (!string.IsNullOrEmpty(txtGroupName.Text))
+            {
+                Group group = new Group()
+                {
+                    GroupName = txtGroupName.Text,
+                    Description = txtDescription.Text
+                };
+
+                userDBContext.Groups.Add(group);
+                userDBContext.SaveChanges();
+            }
+            else 
+            {
+
+            }
+
+
             Button button = (Button)sender;
             Session["senderID"] = button.ID;
             Response.Redirect(Resources.GroupWebForm, false);

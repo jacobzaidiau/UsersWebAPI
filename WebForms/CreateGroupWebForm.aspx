@@ -9,6 +9,16 @@
 <body>
     <form id="form1" runat="server">
         <div>
+            <asp:Label ID="lblGroupName" runat="server" Text="Group Name:"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:TextBox ID="txtGroupName" runat="server"></asp:TextBox>
+            <br />
+            <br />
+            <asp:Label ID="lblDescription" runat="server" Text="Description:"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:TextBox ID="txtDescription" runat="server"></asp:TextBox>
+            <br />
+            <br />
             <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" Text="Submit" />
 &nbsp;&nbsp;&nbsp;
             <asp:Button ID="btnBack" runat="server" OnClick="btnBack_Click" Text="Back" />
