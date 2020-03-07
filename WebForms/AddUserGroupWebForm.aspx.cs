@@ -12,12 +12,16 @@ namespace UsersWebAPI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Page.IsPostBack) 
+            {
+                Session["groupID"] = null;
+            }
             ClientScript.GetPostBackEventReference(this, string.Empty);
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-
+            lblMessage.Text = "";
             if (!string.IsNullOrEmpty((string)Session["groupID"]))
             {
 
@@ -46,12 +50,12 @@ namespace UsersWebAPI
                 }
                 else 
                 {
-
+                    lblMessage.Text = "This group is already assigned to the user.";
                 }
             }
             else 
             {
-
+                lblMessage.Text = "Please select a group before submitting or click the Back button.";
             }
         }
 

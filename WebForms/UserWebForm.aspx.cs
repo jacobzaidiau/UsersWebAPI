@@ -12,8 +12,26 @@ namespace UsersWebAPI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack) 
+            if (!Page.IsPostBack)
             {
+                if (!string.IsNullOrEmpty((string)Session["userID"]))
+                {
+                    int x = Convert.ToInt32(Session["userID"]);
+                    UserDBContext userDBContext = new UserDBContext();
+                    User user = (from d in userDBContext.Users
+                                 where d.UserId == x
+                                 select d).Single();
+
+                    for (int i = 0; i < GridView1.Rows.Count; i++)
+                    {
+                        if (GridView1.Rows[i].Cells[0].Text == user.UserId.ToString())
+                        {
+                            GridView1.SelectedIndex = i;
+                            break;
+                        }
+                    }
+
+                }
                 return;
             }
             GridView1.DataSourceID = ObjectDataSource1.ID;
@@ -29,7 +47,9 @@ namespace UsersWebAPI
                 Response.Redirect(Resources.UserGroupWebForm, false);
             }
             else 
-            { }
+            {
+                lblMessage.Text = "Please select a row first.";
+            }
         }
 
         protected void btnCreate_Click(object sender, EventArgs e)
@@ -47,10 +67,16 @@ namespace UsersWebAPI
                 Session["senderID"] = button.ID;
                 Response.Redirect(Resources.CreateUserWebForm, false);
             }
+            else 
+            {
+                lblMessage.Text = "Please select a row first.";
+            }
         }
 
         protected void btnRemove_Click(object sender, EventArgs e)
         {
+            lblMessage.Text = "";
+
             UserDBContext userDBContext = new UserDBContext();
             if (!string.IsNullOrEmpty((string)Session["userID"]))
             {
@@ -60,11 +86,13 @@ namespace UsersWebAPI
                              select d).Single();
                 userDBContext.Users.Remove(user);
                 userDBContext.SaveChanges();
+
                 Session["userID"] = null;
+                GridView1.SelectedIndex = -1;
             }
             else
             {
-
+                lblMessage.Text = "Please select a row first.";
             }
         }
 

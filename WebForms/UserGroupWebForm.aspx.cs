@@ -12,9 +12,19 @@ namespace UsersWebAPI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Page.IsPostBack) 
+            {
+                Session["groupID"] = null;
+            }
+            else 
+            {
+
+            }
+            int x = Convert.ToInt32(Session["userID"]);
             UserDBContext userDBContext = new UserDBContext();
             var query = from user in userDBContext.Users
                         from userGroup in user.UserGroups
+                        where user.UserId == x
                         select new
                         {
                             UserId = user.UserId,
@@ -29,8 +39,6 @@ namespace UsersWebAPI
 
                             GroupName = userGroup.Group.GroupName,
                             Description = userGroup.Group.Description
-
-
                         };
             GridView1.DataSource = query.ToList();
             GridView1.DataBind();
@@ -46,8 +54,9 @@ namespace UsersWebAPI
 
         protected void btnRemove_Click(object sender, EventArgs e)
         {
+            lblMessage.Text = "";
             UserDBContext userDBContext = new UserDBContext();
-            if (!string.IsNullOrEmpty((string)Session["userID"]))
+            if (!string.IsNullOrEmpty((string)Session["groupID"]))
             {
                 int x = Convert.ToInt32(Session["userID"]);
                 int y = Convert.ToInt32(Session["groupID"]);
@@ -56,15 +65,21 @@ namespace UsersWebAPI
                                        select d).Single();
                 userDBContext.UserGroups.Remove(userGroup);
                 userDBContext.SaveChanges();
+
+                Session["groupID"] = null;
+                GridView1.SelectedIndex = -1;
+                Page_Load(null, null);
+
             }
             else
             {
-
+                lblMessage.Text = "Please select a row first.";
             }
         }
 
         protected void btnClear_Click(object sender, EventArgs e)
         {
+            lblMessage.Text = "";
             UserDBContext userDBContext = new UserDBContext();
             if (!string.IsNullOrEmpty((string)Session["userID"]))
             {

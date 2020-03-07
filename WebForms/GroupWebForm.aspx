@@ -9,6 +9,7 @@
 <body style="font-weight: 700">
     <form id="form1" runat="server">
         <div style="font-weight: 700">
+            <asp:Label ID="lblMessage" runat="server" Font-Bold="True" ForeColor="Red"></asp:Label>
             <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" DataSourceID="ObjectDataSource1" ForeColor="#333333" GridLines="None"  OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnRowDataBound="GridView1_RowDataBound">
                 <AlternatingRowStyle BackColor="White" />
                 <Columns>

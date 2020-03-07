@@ -12,14 +12,30 @@ namespace UsersWebAPI.WebForms
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack) 
+            if (!Page.IsPostBack)
             {
+                if (!string.IsNullOrEmpty((string)Session["groupID"]))
+                {
+                    int x = Convert.ToInt32(Session["groupID"]);
+                    UserDBContext userDBContext = new UserDBContext();
+                    Group group = (from d in userDBContext.Groups
+                                   where d.GroupId == x
+                                   select d).Single();
 
+                    for (int i = 0; i < GridView1.Rows.Count; i++)
+                    {
+                        if (GridView1.Rows[i].Cells[0].Text == group.GroupId.ToString())
+                        {
+                            GridView1.SelectedIndex = i;
+                            break;
+                        }
+                    }
+
+                }
                 return;
             }
 
             GridView1.DataSourceID = ObjectDataSource1.ID;
-
             ClientScript.GetPostBackEventReference(this, string.Empty);
         }
 
@@ -37,11 +53,16 @@ namespace UsersWebAPI.WebForms
                 Button button = (Button)sender;
                 Session["senderID"] = button.ID;
                 Response.Redirect(Resources.CreateGroupWebForm, false);
-            } 
+            }
+            else 
+            {
+                lblMessage.Text = "Please select a row first.";
+            }
         }
 
         protected void btnRemove_Click(object sender, EventArgs e)
         {
+            lblMessage.Text = "";
             UserDBContext userDBContext = new UserDBContext();
             if (!string.IsNullOrEmpty((string)Session["groupID"]))
             {
@@ -51,11 +72,13 @@ namespace UsersWebAPI.WebForms
                              select d).Single();
                 userDBContext.Groups.Remove(group);
                 userDBContext.SaveChanges();
+
                 Session["groupID"] = null;
+                GridView1.SelectedIndex = -1;
             }
             else
             {
-
+                lblMessage.Text = "Please select a row first.";
             }
         }
 
