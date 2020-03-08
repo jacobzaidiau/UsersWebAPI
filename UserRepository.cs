@@ -43,5 +43,16 @@ namespace UsersWebAPI
                     select d).Count();
         }
 
+        public List<Group> GetUserGroupsWhere(string userId) 
+        {
+            int userIdAsInteger = Convert.ToInt32(userId);
+            UserDBContext userDBContext = new UserDBContext();
+
+            List<Group> userGroups = (from d in userDBContext.UserGroups
+                                          join g in userDBContext.Groups on d.GroupId equals g.GroupId
+                                          where d.UserId == userIdAsInteger
+                                          select g).ToList();
+            return userGroups;
+        }
     }
 }

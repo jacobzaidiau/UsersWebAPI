@@ -12,27 +12,6 @@ namespace UsersWebAPI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            int x = Convert.ToInt32(Session["userID"]);
-            UserDBContext userDBContext = new UserDBContext();
-            var query = from user in userDBContext.Users
-                        from userGroup in user.UserGroups
-                        where user.UserId == x
-                        select new
-                        {
-                            UserId = user.UserId,
-                            GroupId = userGroup.Group.GroupId,
-                            Firstname = user.Firstname,
-                            Lastname = user.Lastname,
-                            DateOfBirth = user.DateOfBirth,
-
-                            Email = user.Email,
-                            Phone = user.Phone,
-                            Mobile = user.Mobile,
-
-                            GroupName = userGroup.Group.GroupName,
-                            Description = userGroup.Group.Description
-                        };
-            GridView1.DataSource = query.ToList();
             GridView1.DataBind();
 
         }
@@ -118,8 +97,7 @@ namespace UsersWebAPI
             {
                 if (row.RowIndex == GridView1.SelectedIndex)
                 {
-                    Session["userID"] = row.Cells[0].Text;
-                    Session["groupID"] = row.Cells[1].Text;
+                    Session["groupID"] = row.Cells[0].Text;
                 }
             }
         }
