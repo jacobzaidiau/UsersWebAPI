@@ -90,17 +90,21 @@ namespace UsersWebAPI
 
                 Session["userID"] = null;
                 GridView1.SelectedIndex = -1;
+
+                bindGridView();
             }
             else
             {
                 lblMessage.Text = "Please select a row first.";
             }
+
         }
 
         protected void btnBack_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
             Session["senderID"] = button.ID;
+            Session["senderURL"] = "UserWebForm";
             Response.Redirect(Resources.MainWebForm, false);
         }
 

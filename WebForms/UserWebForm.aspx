@@ -14,31 +14,32 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <asp:Label ID="lblFirstname" runat="server" Text="First Name:"></asp:Label>
+        <asp:Table runat="server">
+            <asp:TableRow>
+                <asp:TableCell><asp:Label ID="lblFirstname" runat="server" Text="First Name:"></asp:Label></asp:TableCell>
+                <asp:TableCell><asp:TextBox ID="txtFirstname" runat="server"></asp:TextBox></asp:TableCell>
+                <asp:TableCell><asp:Label ID="lblEmail" runat="server" Text="Email:"></asp:Label></asp:TableCell>
+                <asp:TableCell><asp:TextBox ID="txtEmail" runat="server"></asp:TextBox></asp:TableCell>
+                <asp:TableCell HorizontalAlign="Right" RowSpan="3"><asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btnBack" /></asp:TableCell>
+
+            </asp:TableRow>
+            <asp:TableRow>
+                <asp:TableCell><asp:Label ID="lblLastname" runat="server" Text="Last Name"></asp:Label></asp:TableCell>
+                <asp:TableCell><asp:TextBox ID="txtLastname" runat="server"></asp:TextBox></asp:TableCell>
+                <asp:TableCell><asp:Label ID="lblPhone" runat="server" Text="Phone"></asp:Label></asp:TableCell>
+                <asp:TableCell><asp:TextBox ID="txtPhone" runat="server"></asp:TextBox></asp:TableCell>
+            </asp:TableRow>
+            <asp:TableRow>
+                <asp:TableCell><asp:Label ID="lblDateOfBirth" runat="server" Text="Date Of Birth:"></asp:Label></asp:TableCell>
+                <asp:TableCell><asp:TextBox ID="txtDateOfBirth" runat="server"></asp:TextBox></asp:TableCell>
+                <asp:TableCell><asp:Label ID="lblMobile" runat="server" Text="Mobile:"></asp:Label></asp:TableCell>
+                <asp:TableCell><asp:TextBox ID="txtMobile" runat="server"></asp:TextBox></asp:TableCell>
+            </asp:TableRow>
+        </asp:Table>
+        
 &nbsp;&nbsp;&nbsp;
-        <asp:TextBox ID="txtFirstname" runat="server"></asp:TextBox>
 &nbsp;&nbsp;&nbsp;
-        <asp:Label ID="lblEmail" runat="server" Text="Email:"></asp:Label>
 &nbsp;&nbsp;&nbsp;
-        <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
-        <br />
-        <asp:Label ID="lblLastname" runat="server" Text="Last Name"></asp:Label>
-&nbsp;&nbsp;&nbsp;
-        <asp:TextBox ID="txtLastname" runat="server"></asp:TextBox>
-&nbsp;&nbsp;&nbsp;
-        <asp:Label ID="lblPhone" runat="server" Text="Phone"></asp:Label>
-&nbsp;&nbsp;&nbsp;
-        <asp:TextBox ID="txtPhone" runat="server"></asp:TextBox>
-        <br />
-        <asp:Label ID="lblDateOfBirth" runat="server" Text="Date Of Birth:"></asp:Label>
-&nbsp;&nbsp;&nbsp;
-        <asp:TextBox ID="txtDateOfBirth" runat="server"></asp:TextBox>
-&nbsp;&nbsp;&nbsp;
-        <asp:Label ID="lblMobile" runat="server" Text="Mobile:"></asp:Label>
-&nbsp;&nbsp;&nbsp;
-        <asp:TextBox ID="txtMobile" runat="server"></asp:TextBox>
-&nbsp;&nbsp;&nbsp;
-        <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btnBack" />
         <br />
         <br />
         <asp:Label ID="lblMessage" runat="server" Font-Bold="True" ForeColor="Red"></asp:Label>

@@ -1,19 +1,23 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MainWebForm.aspx.cs" Inherits="UsersWebAPI.WebForm1" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WebForms/Site.Master" AutoEventWireup="true" CodeBehind="~/WebForms/MainWebForm.aspx.cs" Inherits="UsersWebAPI.WebForm1" %>
 
-<!DOCTYPE html>
-<link rel="stylesheet" runat="server" type="text/css" href="stylesheet.css" />
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-        <div>
-        </div>
-        <asp:Button ID="btnUsers" runat="server" Text="Users" OnClick="btnUsers_Click" CssClass="btnSubmit" />
-&nbsp;&nbsp;&nbsp;
-        <asp:Button ID="btnGroups" runat="server" Text="Groups" OnClick="btnGroups_Click" CssClass="btnSubmit" />
-    </form>
-</body>
-</html>
+
+<asp:Content ID="Content" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <br />
+    <br />
+    <asp:Table ID="Table2" runat="server" HorizontalAlign="Center">
+        <asp:TableHeaderRow>
+            <asp:TableHeaderCell ColumnSpan="2"><asp:Label ID="lblMain" runat="server" Text="Click on one of the below buttons to manage your information." CssClass="footerTableHeaderText" ForeColor="#1E384B"></asp:Label>
+</asp:TableHeaderCell>
+        </asp:TableHeaderRow>
+        <asp:TableRow runat="server" HorizontalAlign="Center">
+            <asp:TableCell runat="server">
+                <asp:Button ID="btnUsers" runat="server" Text="Users" OnClick="btnUsers_Click" CssClass="btnSubmit" /></asp:TableCell>
+            <asp:TableCell runat="server">
+                <asp:Button ID="btnGroups" runat="server" Text="Groups" OnClick="btnGroups_Click" CssClass="btnSubmit" /></asp:TableCell>
+        </asp:TableRow>
+    </asp:Table>
+    <br />
+    <br />
+    <br />
+</asp:Content>

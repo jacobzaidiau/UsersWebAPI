@@ -1,4 +1,42 @@
-﻿body {
+﻿html, body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: #ffffff;
+}
+
+footer {
+    background: #2e2e2e;
+}
+
+td.footerPadRight {
+    padding-right: 30px;
+    text-align: left;
+}
+
+
+
+th {
+    text-align: left;
+    padding-bottom: 20px;
+}
+
+.footerTableHeaderText {
+    color: #3bd9ba;
+}
+
+.footerTableItemText {
+    color: #ffffff;
+    text-decoration: none;
+
+}
+
+::selection {
+    background: #3bd9ba;
+    text-shadow: none;
+    color: #1e384b;
 }
 
 .btnBack {

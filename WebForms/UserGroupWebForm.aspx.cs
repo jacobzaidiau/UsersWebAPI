@@ -12,14 +12,6 @@ namespace UsersWebAPI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack) 
-            {
-                Session["groupID"] = null;
-            }
-            else 
-            {
-
-            }
             int x = Convert.ToInt32(Session["userID"]);
             UserDBContext userDBContext = new UserDBContext();
             var query = from user in userDBContext.Users
@@ -91,6 +83,10 @@ namespace UsersWebAPI
                 foreach (var userGroup in userGroups)
                     userDBContext.UserGroups.Remove(userGroup);
                 userDBContext.SaveChanges();
+
+                Session["groupID"] = null;
+                GridView1.SelectedIndex = -1;
+                Page_Load(null, null);
             }
             else
             {

@@ -14,6 +14,14 @@ namespace UsersWebAPI
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Page.IsPostBack) 
+            {
+                if ((string)Session["senderID"] == "btnBack" && (string)Session["senderURL"] == "UserWebForm") 
+                {
+                    Session["senderURL"] = null;
+                    Session["groupID"] = null;
+                }
+            }
 
         }
 
@@ -21,6 +29,7 @@ namespace UsersWebAPI
         {
             Button button = (Button)sender;
             Session["senderID"] = button.ID;
+            Session["groupID"] = null;
             Response.Redirect(Resources.UserWebForm, false);
         }
 
