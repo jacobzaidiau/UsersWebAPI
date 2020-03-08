@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CreateGroupWebForm.aspx.cs" Inherits="UsersWebAPI.WebForms.CreateGroupWebForm" %>
 
 <!DOCTYPE html>
+<link rel="stylesheet" runat="server" type="text/css" href="stylesheet.css" />
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -19,9 +20,9 @@
             <asp:TextBox ID="txtDescription" runat="server"></asp:TextBox>
             <br />
             <br />
-            <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" Text="Submit" />
+            <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" Text="Submit" CssClass="btnSubmit" />
 &nbsp;&nbsp;&nbsp;
-            <asp:Button ID="btnBack" runat="server" OnClick="btnBack_Click" Text="Back" />
+            <asp:Button ID="btnBack" runat="server" OnClick="btnBack_Click" Text="Back" CssClass="btnBack" />
         </div>
     </form>
 </body>

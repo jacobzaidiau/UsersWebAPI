@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CreateUserWebForm.aspx.cs" Inherits="UsersWebAPI.WebForms.CreateUserWebForm" %>
 
 <!DOCTYPE html>
+<link rel="stylesheet" runat="server" type="text/css" href="stylesheet.css" />
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -57,9 +58,9 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <br />
             <br />
-            <asp:Button ID="btnSubmit" OnClick="btnSubmit_Click" runat="server" Text="Submit" />
+            <asp:Button ID="btnSubmit" OnClick="btnSubmit_Click" runat="server" Text="Submit" CssClass="btnSubmit" />
 &nbsp;&nbsp;&nbsp;
-            <asp:Button ID="btnBack" OnClick="btnBack_Click" runat="server" Text="Back" />
+            <asp:Button ID="btnBack" OnClick="btnBack_Click" runat="server" Text="Back" CssClass="btnBack" />
         </div>
     </form>
 </body>

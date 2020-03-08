@@ -85,10 +85,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="stylesheet.css" />
     <Content Include="WebForms\AddUserGroupWebForm.aspx" />
     <Content Include="WebForms\CreateGroupWebForm.aspx" />
     <Content Include="WebForms\CreateUserWebForm.aspx" />
     <Content Include="WebForms\GroupWebForm.aspx" />
+    <Content Include="WebForms\stylesheet.css" />
     <Content Include="WebForms\UserGroupWebForm.aspx" />
     <Content Include="WebForms\UserWebForm.aspx" />
     <Content Include="Web.config" />
