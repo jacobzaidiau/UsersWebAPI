@@ -19,7 +19,7 @@ namespace UsersWebAPI
             return userDBContext.Users.ToList();
         }
 
-        public List<User> GetUsersWhere(string firstname, string lastname, string dateOfBirth, string email, string phone, string mobile)
+        public List<User> GetUsersWhere(string firstname, string lastname, string dateOfBirth, string email, string phone, string mobile, int startRowIndex, int maximumRows)
         {
             UserDBContext userDBContext = new UserDBContext();
 
@@ -29,16 +29,18 @@ namespace UsersWebAPI
             List<User> users = (from d in userDBContext.Users
                                 where d.Firstname.Contains(firstname) && d.Lastname.Contains(lastname) && (dateOfBirthAsDate == null || d.DateOfBirth == dateOfBirthAsDate)
                                 && d.Email.Contains(email) && (phone == "" || d.Phone.Contains(phone)) && (mobile == "" || d.Mobile.Contains(mobile))
-                                select d).ToList();
+                                select d).OrderBy(x => x.UserId).Skip(startRowIndex).Take(maximumRows).ToList();
             return users;
         }
 
-        public static int GetTotalCount() 
+        public static int GetTotalCount(string firstname, string lastname, string dateOfBirth, string email, string phone, string mobile, int startRowIndex, int maximumRows)
         {
             UserDBContext userDBContext = new UserDBContext();
-            int totalCount = (from d in userDBContext.Users
+            DateTime? dateOfBirthAsDate = string.IsNullOrEmpty(dateOfBirth) ? null : (DateTime?)DateTime.Parse(dateOfBirth);
+            return (from d in userDBContext.Users
+                    where d.Firstname.Contains(firstname) && d.Lastname.Contains(lastname) && (dateOfBirthAsDate == null || d.DateOfBirth == dateOfBirthAsDate)
+                    && d.Email.Contains(email) && (phone == "" || d.Phone.Contains(phone)) && (mobile == "" || d.Mobile.Contains(mobile))
                     select d).Count();
-            return totalCount;
         }
 
     }

@@ -76,7 +76,9 @@
         <asp:Button ID="btnBack" runat="server" OnClick="btnBack_Click" Text="Back" />
         <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" 
             SelectMethod="GetUsersWhere" 
-            TypeName="UsersWebAPI.UserRepository" StartRowIndexParameterName="">
+            TypeName="UsersWebAPI.UserRepository"
+            EnablePaging="True"
+            SelectCountMethod="GetTotalCount">
             <SelectParameters>
                 <asp:ControlParameter ControlID="txtFirstname" ConvertEmptyStringToNull="False" DefaultValue="" Name="firstname" PropertyName="Text" Type="String" />
                 <asp:ControlParameter ControlID="txtLastname" ConvertEmptyStringToNull="False" DefaultValue="" Name="lastname" PropertyName="Text" Type="String" />
@@ -84,6 +86,8 @@
                 <asp:ControlParameter ControlID="txtEmail" ConvertEmptyStringToNull="False" DefaultValue="" Name="email" PropertyName="Text" Type="String" />
                 <asp:ControlParameter ControlID="txtPhone" ConvertEmptyStringToNull="False" DefaultValue="" Name="phone" PropertyName="Text" Type="String" />
                 <asp:ControlParameter ControlID="txtMobile" ConvertEmptyStringToNull="False" DefaultValue="" Name="mobile" PropertyName="Text" Type="String" />
+                <asp:Parameter Name="startRowIndex" Type="Int32" />
+                <asp:Parameter Name="maximumRows" Type="Int32" />
             </SelectParameters>
         </asp:ObjectDataSource>
     </form>
