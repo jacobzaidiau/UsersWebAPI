@@ -41,7 +41,7 @@
     </div>
     <br />
     <br />
-    <asp:ObjectDataSource ID="ObjectDataSource3" runat="server" SelectMethod="GetUserGroupsWhere" TypeName="UsersWebAPI.UserRepository"
+    <asp:ObjectDataSource ID="ObjectDataSource3" runat="server" SelectMethod="GetUserGroups" TypeName="UsersWebAPI.UserGroupRepository"
         EnablePaging="True"
         SelectCountMethod="GetUserGroupsTotalCount">
         <SelectParameters>

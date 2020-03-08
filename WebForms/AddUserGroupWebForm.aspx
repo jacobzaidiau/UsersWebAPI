@@ -34,7 +34,7 @@
 
     </div>
     <br />
-    <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="GetGroupsWhere" TypeName="UsersWebAPI.UserRepository" EnablePaging="True" SelectCountMethod="GetGroupsTotalCount">
+    <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="GetGroups" TypeName="UsersWebAPI.GroupRepository" EnablePaging="True" SelectCountMethod="GetGroupsTotalCount">
         <SelectParameters>
             <asp:Parameter Name="startRowIndex" Type="Int32" />
             <asp:Parameter Name="maximumRows" Type="Int32" />

@@ -104,7 +104,7 @@
         <br />
     </div>
     <asp:ObjectDataSource ID="ObjectDataSource1" runat="server"
-        SelectMethod="GetUsersWhere"
+        SelectMethod="GetUsers"
         TypeName="UsersWebAPI.UserRepository"
         EnablePaging="True"
         SelectCountMethod="GetUsersTotalCount">

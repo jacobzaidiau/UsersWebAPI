@@ -97,20 +97,25 @@
     <Content Include="WebForms\MainWebForm.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UserGroup.cs" />
+    <Compile Include="IRepository\IUserGroupRepository.cs" />
+    <Compile Include="IRepository\IGroupRepository.cs" />
+    <Compile Include="IRepository\IUserRepository.cs" />
+    <Compile Include="Model\UserGroup.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Group.cs" />
-    <Compile Include="User.cs" />
+    <Compile Include="Model\Group.cs" />
+    <Compile Include="Model\User.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Repository\UserGroupRepository.cs" />
+    <Compile Include="Repository\GroupRepository.cs" />
     <Compile Include="UserDBContext.cs" />
     <Compile Include="UserDBContextSeeder.cs" />
-    <Compile Include="UserRepository.cs" />
+    <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="WebForms\AddUserGroupWebForm.aspx.cs">
       <DependentUpon>AddUserGroupWebForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -185,6 +190,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

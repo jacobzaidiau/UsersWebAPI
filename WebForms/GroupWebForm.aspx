@@ -58,8 +58,8 @@
 
         <br />
         <br />
-        <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="GetGroupsWhere"
-            TypeName="UsersWebAPI.UserRepository"
+        <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="GetGroups"
+            TypeName="UsersWebAPI.GroupRepository"
             EnablePaging="True"
             SelectCountMethod="GetGroupsTotalCount">
             <SelectParameters>
