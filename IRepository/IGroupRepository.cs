@@ -7,6 +7,7 @@ namespace UsersWebAPI.IRepository
 {
     public interface IGroupRepository
     {
+        IEnumerable<Group> GetGroups();
         IEnumerable<Group> GetGroups(int startRowIndex, int maximumRows);
         int GetGroupsTotalCount(int startRowIndex, int maximumRows);
     }

@@ -9,6 +9,13 @@ namespace UsersWebAPI
     public class UserRepository : IUserRepository
     {
         UserDBContext userDBContext = new UserDBContext();
+        public IEnumerable<User> GetUsers()
+        {
+            List<User> users = (from d in userDBContext.Users
+                                select d).ToList();
+            return users;
+        }
+
         public IEnumerable<User> GetUsers(string firstname, string lastname, string dateOfBirth, string email, string phone, string mobile, int startRowIndex, int maximumRows)
         {
             DateTime? dateOfBirthAsDate = string.IsNullOrEmpty(dateOfBirth) ? null : (DateTime?)DateTime.Parse(dateOfBirth);

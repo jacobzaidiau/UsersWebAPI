@@ -9,6 +9,11 @@ namespace UsersWebAPI
     public class GroupRepository : IGroupRepository
     {
         UserDBContext userDBContext = new UserDBContext();
+        public IEnumerable<Group> GetGroups()
+        {
+            return userDBContext.Groups.ToList();
+        }
+
         public IEnumerable<Group> GetGroups(int startRowIndex, int maximumRows)
         {
             return userDBContext.Groups.OrderBy(x => x.GroupId).Skip(startRowIndex).Take(maximumRows).ToList();

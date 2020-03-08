@@ -9,6 +9,14 @@ namespace UsersWebAPI
     public class UserGroupRepository : IUserGroupRepository
     {
         UserDBContext userDBContext = new UserDBContext();
+        public IEnumerable<Group> GetUserGroups()
+        {
+            List<Group> userGroups = (from d in userDBContext.UserGroups
+                                      join g in userDBContext.Groups on d.GroupId equals g.GroupId
+                                      select g).ToList();
+            return userGroups;
+        }
+
         public IEnumerable<Group> GetUserGroups(string userId, int startRowIndex, int maximumRows)
         {
             int userIdAsInteger = Convert.ToInt32(userId);
