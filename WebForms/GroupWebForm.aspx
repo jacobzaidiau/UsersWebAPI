@@ -13,15 +13,22 @@
                 <Columns>
                     <asp:BoundField DataField="GroupId" HeaderText="GroupId" SortExpression="GroupId" HeaderStyle-HorizontalAlign="Left"
                         ItemStyle-CssClass="hidden"
-                        HeaderStyle-CssClass="hidden"></asp:BoundField>
-                    <asp:BoundField DataField="GroupName" HeaderText="Name" SortExpression="GroupName" HeaderStyle-HorizontalAlign="Left"></asp:BoundField>
-                    <asp:BoundField DataField="Description" HeaderText="Description" SortExpression="Description" HeaderStyle-HorizontalAlign="Left"></asp:BoundField>
+                        HeaderStyle-CssClass="hidden">
+                    <HeaderStyle CssClass="hidden" HorizontalAlign="Left" />
+                    <ItemStyle CssClass="hidden" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="GroupName" HeaderText="Name" SortExpression="GroupName" HeaderStyle-HorizontalAlign="Left">
+                    <HeaderStyle HorizontalAlign="Left" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="Description" HeaderText="Description" SortExpression="Description" HeaderStyle-HorizontalAlign="Left">
+                    <HeaderStyle HorizontalAlign="Left" />
+                    </asp:BoundField>
                 </Columns>
                 <EditRowStyle BackColor="#7C6F57" Font-Bold="False" />
                 <FooterStyle BackColor="#F0F1F1" Font-Bold="True" ForeColor="#6F6F6F" />
                 <HeaderStyle BackColor="#F0F1F1" Font-Bold="True" ForeColor="#6F6F6F" CssClass="uppercase" />
                 <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" />
-                <RowStyle BackColor="#FAFAFA" Font-Bold="false" />
+                <RowStyle BackColor="#FAFAFA" Font-Bold="false" HorizontalAlign="Left" />
                 <SelectedRowStyle BackColor="#C5BBAF" Font-Bold="True" ForeColor="#333333" />
                 <SortedAscendingCellStyle BackColor="#F8FAFA" />
                 <SortedAscendingHeaderStyle BackColor="#246B61" />

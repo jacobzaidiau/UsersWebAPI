@@ -8,13 +8,17 @@
         <Columns>
             <asp:BoundField DataField="GroupId" HeaderText="GroupId" SortExpression="GroupId"
                 ItemStyle-CssClass="hidden"
-                HeaderStyle-CssClass="hidden"></asp:BoundField>
+                HeaderStyle-CssClass="hidden">
+<HeaderStyle CssClass="hidden"></HeaderStyle>
+
+<ItemStyle CssClass="hidden"></ItemStyle>
+            </asp:BoundField>
             <asp:BoundField DataField="GroupName" HeaderText="GroupName" SortExpression="GroupName" />
             <asp:BoundField DataField="Description" HeaderText="Description" SortExpression="Description" />
         </Columns>
         <EditRowStyle BackColor="#7C6F57" />
         <FooterStyle BackColor="#F0F1F1" Font-Bold="True" ForeColor="#6F6F6F" />
-        <HeaderStyle BackColor="#F0F1F1" Font-Bold="True" ForeColor="#6F6F6F" CssClass="uppercase" />
+        <HeaderStyle BackColor="#F0F1F1" Font-Bold="True" ForeColor="#6F6F6F" CssClass="uppercase" HorizontalAlign="Left" />
         <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" />
         <RowStyle BackColor="#E3EAEB" />
         <SelectedRowStyle BackColor="#C5BBAF" Font-Bold="True" ForeColor="#333333" />

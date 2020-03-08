@@ -23,13 +23,13 @@
         </asp:TableRow>
         <asp:TableRow>
             <asp:TableCell>
-                <asp:Label ID="lblLastname" runat="server" Text="Last Name"></asp:Label>
+                <asp:Label ID="lblLastname" runat="server" Text="Last Name:"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
                 <asp:TextBox ID="txtLastname" runat="server"></asp:TextBox>
             </asp:TableCell>
             <asp:TableCell>
-                <asp:Label ID="lblPhone" runat="server" Text="Phone"></asp:Label>
+                <asp:Label ID="lblPhone" runat="server" Text="Phone:"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
                 <asp:TextBox ID="txtPhone" runat="server"></asp:TextBox>
