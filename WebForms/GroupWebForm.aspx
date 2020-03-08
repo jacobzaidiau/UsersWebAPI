@@ -11,22 +11,14 @@
     <form id="form1" runat="server">
         <div style="font-weight: 700">
             <asp:Label ID="lblMessage" runat="server" Font-Bold="True" ForeColor="Red"></asp:Label>
-            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" DataSourceID="ObjectDataSource1" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnRowDataBound="GridView1_RowDataBound">
+            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" DataSourceID="ObjectDataSource1" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnRowDataBound="GridView1_RowDataBound" AllowPaging="True" PageSize="5">
                 <AlternatingRowStyle BackColor="#FAFAFA" />
                 <Columns>
                     <asp:BoundField DataField="GroupId" HeaderText="GroupId" SortExpression="GroupId" HeaderStyle-HorizontalAlign="Left"
                         ItemStyle-CssClass="hidden"
-                        HeaderStyle-CssClass="hidden">
-                        <HeaderStyle HorizontalAlign="Left" CssClass="hidden"></HeaderStyle>
-
-                        <ItemStyle CssClass="hidden"></ItemStyle>
-                    </asp:BoundField>
-                    <asp:BoundField DataField="GroupName" HeaderText="Name" SortExpression="GroupName" HeaderStyle-HorizontalAlign="Left">
-                        <HeaderStyle HorizontalAlign="Left"></HeaderStyle>
-                    </asp:BoundField>
-                    <asp:BoundField DataField="Description" HeaderText="Description" SortExpression="Description" HeaderStyle-HorizontalAlign="Left">
-                        <HeaderStyle HorizontalAlign="Left"></HeaderStyle>
-                    </asp:BoundField>
+                        HeaderStyle-CssClass="hidden"></asp:BoundField>
+                    <asp:BoundField DataField="GroupName" HeaderText="Name" SortExpression="GroupName" HeaderStyle-HorizontalAlign="Left"></asp:BoundField>
+                    <asp:BoundField DataField="Description" HeaderText="Description" SortExpression="Description" HeaderStyle-HorizontalAlign="Left"></asp:BoundField>
                 </Columns>
                 <EditRowStyle BackColor="#7C6F57" Font-Bold="False" />
                 <FooterStyle BackColor="#F0F1F1" Font-Bold="True" ForeColor="#6F6F6F" />
@@ -47,7 +39,15 @@
             <asp:Button ID="btnRemove" runat="server" OnClick="btnRemove_Click" Text="Remove" CssClass="btnSubmit" />
             &nbsp;&nbsp;&nbsp;
             <asp:Button ID="btnBack" runat="server" OnClick="btnBack_Click" Text="Back" CssClass="btnBack" />
-            <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="GetGroups" TypeName="UsersWebAPI.UserRepository"></asp:ObjectDataSource>
+            <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="GetGroupsWhere"
+                TypeName="UsersWebAPI.UserRepository"
+                EnablePaging="True"
+                SelectCountMethod="GetGroupsTotalCount">
+                <SelectParameters>
+                    <asp:Parameter Name="startRowIndex" Type="Int32" />
+                    <asp:Parameter Name="maximumRows" Type="Int32" />
+                </SelectParameters>
+            </asp:ObjectDataSource>
         </div>
     </form>
 </body>

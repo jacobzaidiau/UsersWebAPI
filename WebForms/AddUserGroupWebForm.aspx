@@ -11,11 +11,13 @@
     <form id="form1" runat="server">
         <div>
             <asp:Label ID="lblMessage" runat="server" Font-Bold="True" ForeColor="Red"></asp:Label>
-            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" DataSourceID="ObjectDataSource1" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnRowDataBound="GridView1_RowDataBound">
+            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" DataSourceID="ObjectDataSource1" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnRowDataBound="GridView1_RowDataBound" AllowPaging="True">
                 <AlternatingRowStyle BackColor="#FAFAFA" />
                 <Columns>
-                    <asp:BoundField DataField="GroupId" HeaderText="GroupId" SortExpression="GroupId" />
-                    <asp:BoundField DataField="GroupName" HeaderText="GroupName" SortExpression="GroupName" />
+                    <asp:BoundField DataField="GroupId" HeaderText="GroupId" SortExpression="GroupId" 
+                        ItemStyle-CssClass="hidden"
+                        HeaderStyle-CssClass="hidden"></asp:BoundField>
+                    <asp:BoundField DataField="GroupName" HeaderText="Name" SortExpression="GroupName" />
                     <asp:BoundField DataField="Description" HeaderText="Description" SortExpression="Description" />
                 </Columns>
                 <EditRowStyle BackColor="#7C6F57" />
@@ -34,7 +36,12 @@
 &nbsp;&nbsp;&nbsp;
             <asp:Button ID="btnBack" OnClick="btnBack_Click" runat="server" Text="Back" CssClass="btnBack" />
         </div>
-        <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="GetGroups" TypeName="UsersWebAPI.UserRepository"></asp:ObjectDataSource>
+        <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="GetGroupsWhere" TypeName="UsersWebAPI.UserRepository" EnablePaging="True" SelectCountMethod="GetGroupsTotalCount">
+            <SelectParameters>
+                <asp:Parameter Name="startRowIndex" Type="Int32" />
+                <asp:Parameter Name="maximumRows" Type="Int32" />
+            </SelectParameters>
+        </asp:ObjectDataSource>
     </form>
 </body>
 </html>

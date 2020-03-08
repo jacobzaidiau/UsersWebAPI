@@ -22,12 +22,67 @@ namespace UsersWebAPI
             };
             Group group3 = new Group()
             {
-                GroupName = "Receptionist",
+                GroupName = "Receptionist3",
                 Description = "Responsible for receiving patients."
             };
+            Group group4 = new Group()
+            {
+                GroupName = "Receptionist4",
+                Description = "Responsible for receiving patients."
+            };
+            Group group5 = new Group()
+            {
+                GroupName = "Receptionist5",
+                Description = "Responsible for receiving patients."
+            };
+            Group group6 = new Group()
+            {
+                GroupName = "Receptionist6",
+                Description = "Responsible for receiving patients."
+            };
+            Group group7 = new Group()
+            {
+                GroupName = "Receptionist7",
+                Description = "Responsible for receiving patients."
+            };
+            Group group8 = new Group()
+            {
+                GroupName = "Receptionist8",
+                Description = "Responsible for receiving patients."
+            };
+            Group group9 = new Group()
+            {
+                GroupName = "Receptionist9",
+                Description = "Responsible for receiving patients."
+            };
+            Group group10 = new Group()
+            {
+                GroupName = "Receptionist10",
+                Description = "Responsible for receiving patients."
+            };
+            Group group11 = new Group()
+            {
+                GroupName = "Receptionist11",
+                Description = "Responsible for receiving patients."
+            };
+            Group group12 = new Group()
+            {
+                GroupName = "Receptionist12",
+                Description = "Responsible for receiving patients."
+            };
+
             userDBContext.Groups.Add(group1);
             userDBContext.Groups.Add(group2);
             userDBContext.Groups.Add(group3);
+            userDBContext.Groups.Add(group4);
+            userDBContext.Groups.Add(group5);
+            userDBContext.Groups.Add(group6);
+            userDBContext.Groups.Add(group7);
+            userDBContext.Groups.Add(group8);
+            userDBContext.Groups.Add(group9);
+            userDBContext.Groups.Add(group10);
+            userDBContext.Groups.Add(group11);
+            userDBContext.Groups.Add(group12);
 
             User user1 = new User()
             {

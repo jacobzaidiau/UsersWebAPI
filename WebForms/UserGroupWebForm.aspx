@@ -10,18 +10,14 @@
 <body>
     <form id="form1" runat="server">
         <asp:Label ID="lblMessage" runat="server" Font-Bold="True" ForeColor="Red"></asp:Label>
-        <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnRowDataBound="GridView1_RowDataBound" AutoGenerateColumns="False" DataSourceID="ObjectDataSource3">
+        <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnRowDataBound="GridView1_RowDataBound" AutoGenerateColumns="False" DataSourceID="ObjectDataSource3" AllowPaging="True">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:BoundField DataField="GroupId" HeaderText="GroupId" SortExpression="GroupId"
                     ItemStyle-CssClass="hidden"
-                    HeaderStyle-CssClass="hidden">
-                    <HeaderStyle HorizontalAlign="Left" CssClass="hidden"></HeaderStyle>
-
-                    <ItemStyle CssClass="hidden"></ItemStyle>
-                    </asp:BoundField>
-                    <asp:BoundField DataField="GroupName" HeaderText="GroupName" SortExpression="GroupName" />
-                    <asp:BoundField DataField="Description" HeaderText="Description" SortExpression="Description" />
+                    HeaderStyle-CssClass="hidden"></asp:BoundField>
+                <asp:BoundField DataField="GroupName" HeaderText="GroupName" SortExpression="GroupName" />
+                <asp:BoundField DataField="Description" HeaderText="Description" SortExpression="Description" />
             </Columns>
             <EditRowStyle BackColor="#7C6F57" />
             <FooterStyle BackColor="#F0F1F1" Font-Bold="True" ForeColor="#6F6F6F" />
@@ -43,9 +39,13 @@
         <asp:Button ID="btnClear" runat="server" OnClick="btnClear_Click" Text="Clear" CssClass="btnSubmit" />
         &nbsp;&nbsp;&nbsp;
         <asp:Button ID="btnBack" runat="server" OnClick="btnBack_Click" Text="Back" CssClass="btnBack" />
-        <asp:ObjectDataSource ID="ObjectDataSource3" runat="server" SelectMethod="GetUserGroupsWhere" TypeName="UsersWebAPI.UserRepository">
+        <asp:ObjectDataSource ID="ObjectDataSource3" runat="server" SelectMethod="GetUserGroupsWhere" TypeName="UsersWebAPI.UserRepository"
+            EnablePaging="True"
+            SelectCountMethod="GetUserGroupsTotalCount">
             <SelectParameters>
                 <asp:SessionParameter Name="userId" SessionField="userID" Type="String" />
+                <asp:Parameter Name="startRowIndex" Type="Int32" />
+                <asp:Parameter Name="maximumRows" Type="Int32" />
             </SelectParameters>
         </asp:ObjectDataSource>
     </form>

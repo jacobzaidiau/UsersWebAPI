@@ -90,7 +90,7 @@
             SelectMethod="GetUsersWhere" 
             TypeName="UsersWebAPI.UserRepository"
             EnablePaging="True"
-            SelectCountMethod="GetTotalCount">
+            SelectCountMethod="GetUsersTotalCount">
             <SelectParameters>
                 <asp:ControlParameter ControlID="txtFirstname" ConvertEmptyStringToNull="False" DefaultValue="" Name="firstname" PropertyName="Text" Type="String" />
                 <asp:ControlParameter ControlID="txtLastname" ConvertEmptyStringToNull="False" DefaultValue="" Name="lastname" PropertyName="Text" Type="String" />
