@@ -49,7 +49,79 @@ namespace UsersWebAPI
 
             User user3 = new User()
             {
-                Username = "timc",
+                Username = "timc3",
+                Password = "abc123",
+                Firstname = "Tim",
+                Lastname = "Charles",
+                Email = "tim.charles@corepractice.com.au"
+            };
+
+            User user4 = new User()
+            {
+                Username = "timc4",
+                Password = "abc123",
+                Firstname = "Tim",
+                Lastname = "Charles",
+                Email = "tim.charles@corepractice.com.au"
+            };
+
+            User user5 = new User()
+            {
+                Username = "timc5",
+                Password = "abc123",
+                Firstname = "Tim",
+                Lastname = "Charles",
+                Email = "tim.charles@corepractice.com.au"
+            };
+
+            User user6 = new User()
+            {
+                Username = "timc6",
+                Password = "abc123",
+                Firstname = "Tim",
+                Lastname = "Charles",
+                Email = "tim.charles@corepractice.com.au"
+            };
+
+            User user7 = new User()
+            {
+                Username = "timc7",
+                Password = "abc123",
+                Firstname = "Tim",
+                Lastname = "Charles",
+                Email = "tim.charles@corepractice.com.au"
+            };
+
+            User user8 = new User()
+            {
+                Username = "timc8",
+                Password = "abc123",
+                Firstname = "Tim",
+                Lastname = "Charles",
+                Email = "tim.charles@corepractice.com.au"
+            };
+
+            User user9 = new User()
+            {
+                Username = "timc9",
+                Password = "abc123",
+                Firstname = "Tim",
+                Lastname = "Charles",
+                Email = "tim.charles@corepractice.com.au"
+            };
+
+            User user10 = new User()
+            {
+                Username = "timc10",
+                Password = "abc123",
+                Firstname = "Tim",
+                Lastname = "Charles",
+                Email = "tim.charles@corepractice.com.au"
+            };
+
+            User user11 = new User()
+            {
+                Username = "timc11",
                 Password = "abc123",
                 Firstname = "Tim",
                 Lastname = "Charles",
@@ -59,6 +131,14 @@ namespace UsersWebAPI
             userDBContext.Users.Add(user1);
             userDBContext.Users.Add(user2);
             userDBContext.Users.Add(user3);
+            userDBContext.Users.Add(user4);
+            userDBContext.Users.Add(user5);
+            userDBContext.Users.Add(user6);
+            userDBContext.Users.Add(user7);
+            userDBContext.Users.Add(user8);
+            userDBContext.Users.Add(user9);
+            userDBContext.Users.Add(user10);
+            userDBContext.Users.Add(user11);
 
             UserGroup userGroup1 = new UserGroup()
             {

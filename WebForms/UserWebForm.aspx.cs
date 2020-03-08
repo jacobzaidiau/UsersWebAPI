@@ -12,6 +12,8 @@ namespace UsersWebAPI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            bindGridView();
             if (!Page.IsPostBack)
             {
                 if (!string.IsNullOrEmpty((string)Session["userID"]))
@@ -34,7 +36,6 @@ namespace UsersWebAPI
                 }
                 return;
             }
-            GridView1.DataSourceID = ObjectDataSource1.ID;
             ClientScript.GetPostBackEventReference(this, string.Empty);
         }
 
@@ -126,9 +127,15 @@ namespace UsersWebAPI
             }
         }
 
-
-
-
+        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridView1.PageIndex = e.NewPageIndex;
+            bindGridView(); //bindgridview will get the data source and bind it again
+        }
+        private void bindGridView()
+        {
+            GridView1.DataBind();
+        }
 
 
 
