@@ -14,7 +14,7 @@ For the password hashing, I decided to go with Argon2, because it has a positive
 
 ## Current Bugs
 
-1. The password does not provide accurate feedback to the user as of yet.
+1. The password does not provide accurate feedback to the user as of yet, and does so far too slowly. I will do this by using Angular.js to bind the password data to the password feedback label. Clicking submit without waiting for the feedback results in the application believing there has been no input inserted into the password field at all.
 
 2. The Date Of Birth does not have a calendar tool to help users assign a date of birth in the correct format.
 
