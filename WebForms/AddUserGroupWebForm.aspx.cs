@@ -13,28 +13,36 @@ namespace UsersWebAPI
     {
         UserGroupRepository userGroupRepository = new UserGroupRepository();
 
+        public List<int> groups
+        {
+            get
+            {
+                if (ViewState["paramsList"] == null)
+                    ViewState["paramsList"] = new List<int>();
+
+                return ViewState["paramsList"] as List<int>;
+            }
+            set
+            {
+                ViewState["paramsList"] = value;
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
                 Session["groupID"] = null;
             }
-            ClientScript.GetPostBackEventReference(this, string.Empty);
+            else
+            {
+
+            }
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             lblMessage.Text = "";
-
-            List<int> groups = new List<int>();
-            foreach (GridViewRow row in GridView1.Rows)
-            {
-                CheckBox checkBox = (CheckBox)row.Cells[1].Controls[1];
-                if (checkBox.Checked)
-                {
-                    groups.Add(Convert.ToInt32(row.Cells[0].Text));
-                }
-            }
 
             int x = Convert.ToInt32(Session["userID"]);
 
@@ -59,8 +67,35 @@ namespace UsersWebAPI
             Response.Redirect(Resources.UserGroupWebForm, false);
         }
 
+        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            foreach (GridViewRow row in GridView1.Rows)
+            {
+                CheckBox checkBox = (CheckBox)row.Cells[1].Controls[1];
+                if (checkBox.Checked)
+                    if (!groups.Any(x => x == Convert.ToInt32(row.Cells[0].Text)))
+                        groups.Add(Convert.ToInt32(row.Cells[0].Text));
+            }
+
+            GridView1.PageIndex = e.NewPageIndex;
+            GridView1.DataBind();
 
 
+            foreach (GridViewRow row in GridView1.Rows)
+            {
+                if (groups.Contains(Convert.ToInt32(row.Cells[0].Text)))
+                {
+                    CheckBox checkBox = (CheckBox)row.Cells[1].Controls[1];
+                    checkBox.Checked = true;
 
+                }
+            }
+        }
+
+
+        protected void GridView1_PageIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

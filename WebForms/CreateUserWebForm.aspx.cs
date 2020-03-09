@@ -9,47 +9,23 @@ using System.Security.Cryptography;
 using System.Text;
 using Konscious.Security.Cryptography;
 using System.Drawing;
+using UsersWebAPI.IRepository;
 
 namespace UsersWebAPI.WebForms
 {
     public partial class CreateUserWebForm : System.Web.UI.Page
     {
-
-        public byte[] CreateSalt()  
-        {
-            var buffer = new byte[16];
-            var rng = new RNGCryptoServiceProvider();
-            rng.GetBytes(buffer);
-            return buffer;
-        }
-        public byte[] HashPassword(string password, byte[] salt) 
-        {
-            var argon2 = new Argon2id(Encoding.UTF8.GetBytes(password));
-
-            argon2.Salt = salt;
-            argon2.DegreeOfParallelism = 1; // four cores
-            argon2.Iterations = 4;
-            argon2.MemorySize = 16 * 8; // 1 GB
-
-            return argon2.GetBytes(16);
-        }
-        private bool VerifyHash(string password, byte[] salt, byte[] hash)
-        {
-            var newHash = HashPassword(password, salt);
-            return hash.SequenceEqual(newHash);
-        }
+        UserRepository userRepository = new UserRepository();
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack) 
+            if (!Page.IsPostBack)
             {
-                if ((string)Session["senderID"] == "btnUpdate"){
+                if ((string)Session["senderID"] == "btnUpdate")
+                {
                     int x = Convert.ToInt32(Session["userID"]);
-                    UserDBContext userDBContext = new UserDBContext();
-                    User user = (from d in userDBContext.Users
-                                 where d.UserId == x
-                                 select d).Single();
 
+                    User user = userRepository.SelectUser(x);
 
                     txtUsername.Text = user.Username;
                     txtPassword.Text = "";
@@ -61,11 +37,9 @@ namespace UsersWebAPI.WebForms
                     txtEmail.Text = user.Email;
                     txtPhone.Text = user.Phone;
                     txtMobile.Text = user.Mobile;
-
                 }
                 return;
             }
-
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -73,76 +47,55 @@ namespace UsersWebAPI.WebForms
             lblMessage.Text = "";
             string username = txtUsername.Text;
             string password = (string)Session["password"];
+            DateTime? dateOfBirth = string.IsNullOrEmpty(txtDateOfBirth.Text) ? null : (DateTime?)DateTime.Parse(txtDateOfBirth.Text);
+
+
             if (string.IsNullOrEmpty(password))
                 password = "";
-            UserDBContext userDBContext = new UserDBContext();
-
-            List<User> accountUser = (from d in userDBContext.Users
-                                where d.Username == username
-                                select d).ToList();
-
-           
-
-            
-
 
             if ((string)Session["senderID"] == "btnCreate")
             {
-
-                if (accountUser.Count > 0 && (string)Session["senderID"] == "btnCreate")
+                if (userRepository.UsernameExists(username) && (string)Session["senderID"] == "btnCreate")
                 {
                     lblMessage.Text = "Error: User already exists.";
                     return;
                 }
-
                 if (password.Length < 8 || !password.Any(c => char.IsUpper(c)))
                 {
                     lblMessage.Text = "Please enter a valid password.";
                     return;
                 }
-
-                byte[] salt = CreateSalt();
-                byte[] hash = HashPassword(password, salt);
-                bool success = VerifyHash(password, salt, hash);
-
-
                 if (
-                    !string.IsNullOrEmpty(txtUsername.Text) &&
+                    !string.IsNullOrEmpty(username) &&
                     !string.IsNullOrEmpty(password) &&
                     !string.IsNullOrEmpty(txtFirstname.Text) &&
                     !string.IsNullOrEmpty(txtLastname.Text) &&
                     !string.IsNullOrEmpty(txtEmail.Text)
                     )
                 {
-                    User user = new User()
-                    {
-                        Username = txtUsername.Text,
-                        Password = Convert.ToBase64String(hash),
-                        Salt = Convert.ToBase64String(salt),
-                        Firstname = txtFirstname.Text,
-                        Lastname = txtLastname.Text,
-                        DateOfBirth = string.IsNullOrEmpty(txtDateOfBirth.Text) ? null : (DateTime?)DateTime.Parse(txtDateOfBirth.Text),
 
-                        Email = txtEmail.Text,
-                        Phone = txtPhone.Text,
-                        Mobile = txtMobile.Text
-                    };
+                    userRepository.AddUser(
+                        username,
+                        password,
+                        txtFirstname.Text,
+                        txtLastname.Text,
+                        dateOfBirth,
+                        txtEmail.Text,
+                        txtPhone.Text,
+                        txtMobile.Text);
 
-                    userDBContext.Users.Add(user);
-                    userDBContext.SaveChanges();
+                    Session["password"] = null;
+                    Button button = (Button)sender;
+                    Session["senderID"] = button.ID;
+                    Response.Redirect(Resources.UserWebForm, false);
                 }
                 else
                 {
                     lblMessage.Text = "Please fill in the required text fields.";
                     return;
                 }
-
-                Session["password"] = null;
-                Button button = (Button)sender;
-                Session["senderID"] = button.ID;
-                Response.Redirect(Resources.UserWebForm, false);
             }
-            else if ((string)Session["senderID"] == "btnUpdate") 
+            else if ((string)Session["senderID"] == "btnUpdate")
             {
                 if (!string.IsNullOrEmpty(password) && (password.Length < 8 || !password.Any(c => char.IsUpper(c))))
                 {
@@ -151,30 +104,15 @@ namespace UsersWebAPI.WebForms
                 }
 
                 int x = Convert.ToInt32(Session["userID"]);
-                User user = (from d in userDBContext.Users
-                             where d.UserId == x
-                             select d).Single();
 
-                if (!string.IsNullOrEmpty(password))
-                {
-                    byte[] salt = CreateSalt();
-                    byte[] hash = HashPassword(password, salt);
-                    bool success = VerifyHash(password, salt, hash);
-
-                    user.Password = Convert.ToBase64String(hash);
-                    user.Salt = Convert.ToBase64String(salt);
-                }
-
-                user.Firstname = txtFirstname.Text;
-                user.Lastname = txtLastname.Text;
-                if (!string.IsNullOrEmpty(txtDateOfBirth.Text))
-                user.DateOfBirth = DateTime.Parse(txtDateOfBirth.Text);
-
-                user.Email = txtEmail.Text;
-                user.Phone = txtPhone.Text;
-                user.Mobile = txtMobile.Text;
-
-                userDBContext.SaveChanges();
+                userRepository.UpdateUser(x, 
+                    txtPassword.Text,
+                    txtFirstname.Text,
+                    txtLastname.Text,
+                    dateOfBirth,
+                    txtEmail.Text,
+                    txtPhone.Text,
+                    txtMobile.Text);
 
                 Session["password"] = null;
                 Button button = (Button)sender;
@@ -197,7 +135,7 @@ namespace UsersWebAPI.WebForms
         {
             lblPasswordStrength.Text = "";
             string x = txtPassword.Text;
-            if (!string.IsNullOrEmpty(x)) 
+            if (!string.IsNullOrEmpty(x))
             {
                 Session["password"] = x;
             }

@@ -5,11 +5,13 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UsersWebAPI.Properties;
+using UsersWebAPI.IRepository;
 
 namespace UsersWebAPI.WebForms
 {
     public partial class CreateGroupWebForm : System.Web.UI.Page
     {
+        GroupRepository groupRepository = new GroupRepository();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -21,11 +23,7 @@ namespace UsersWebAPI.WebForms
                 else if ((string)Session["senderID"] == "btnUpdate")
                 {
                     int x = Convert.ToInt32(Session["groupID"]);
-
-                    UserDBContext userDBContext = new UserDBContext();
-                    Group group = (from d in userDBContext.Groups
-                                   where d.GroupId == x
-                                   select d).Single();
+                    Group group = groupRepository.SelectGroup(x);
 
                     txtGroupName.Text = group.GroupName;
                     txtDescription.Text = group.Description;
@@ -39,47 +37,34 @@ namespace UsersWebAPI.WebForms
         {
             if ((string)Session["senderID"] == "btnCreate")
             {
-
-                UserDBContext userDBContext = new UserDBContext();
-
                 if (!string.IsNullOrEmpty(txtGroupName.Text))
                 {
-                    Group group = new Group()
-                    {
-                        GroupName = txtGroupName.Text,
-                        Description = txtDescription.Text
-                    };
+                    groupRepository.AddGroup(txtGroupName.Text, txtDescription.Text);
 
-                    userDBContext.Groups.Add(group);
-                    userDBContext.SaveChanges();
+                    Button button = (Button)sender;
+                    Session["senderID"] = button.ID;
+                    Response.Redirect(Resources.GroupWebForm, false);
                 }
                 else
                 {
-
+                    lblMessage.Text = "Please enter a name for your group before proceeding.";
                 }
-                Button button = (Button)sender;
-                Session["senderID"] = button.ID;
-                Response.Redirect(Resources.GroupWebForm, false);
             }
             else if ((string)Session["senderID"] == "btnUpdate") 
             {
                 int x = Convert.ToInt32(Session["groupID"]);
 
-                UserDBContext userDBContext = new UserDBContext();
-                Group group = (from d in userDBContext.Groups
-                               where d.GroupId == x
-                               select d).Single();
-
-                group.GroupName = txtGroupName.Text;
-                group.Description = txtDescription.Text;
-
-                userDBContext.SaveChanges();
-
-                Button button = (Button)sender;
-                Session["senderID"] = button.ID;
-                Response.Redirect(Resources.GroupWebForm, false);
-
-
+                if (!string.IsNullOrEmpty(txtGroupName.Text))
+                {
+                    groupRepository.UpdateGroup(x, txtGroupName.Text, txtDescription.Text);
+                    Button button = (Button)sender;
+                    Session["senderID"] = button.ID;
+                    Response.Redirect(Resources.GroupWebForm, false);
+                }
+                else 
+                {
+                    lblMessage.Text = "Please enter a name for your group before proceeding."; 
+                }
             }
         }
 

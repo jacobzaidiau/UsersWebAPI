@@ -3,6 +3,8 @@
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
 
     <div>
+        <asp:Label ID="lblMessage" runat="server" Font-Bold="True" ForeColor="Red"></asp:Label>
+        <br />
         <asp:Label ID="lblGroupName" runat="server" Text="Group Name:"></asp:Label>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="txtGroupName" runat="server"></asp:TextBox>

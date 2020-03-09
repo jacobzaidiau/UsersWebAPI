@@ -10,6 +10,7 @@ namespace UsersWebAPI
 {
     public partial class UserGroupWebForm : System.Web.UI.Page
     {
+        UserGroupRepository userGroupRepository = new UserGroupRepository();
         protected void Page_Load(object sender, EventArgs e)
         {
             GridView1.DataBind();
@@ -26,16 +27,12 @@ namespace UsersWebAPI
         protected void btnRemove_Click(object sender, EventArgs e)
         {
             lblMessage.Text = "";
-            UserDBContext userDBContext = new UserDBContext();
             if (!string.IsNullOrEmpty((string)Session["groupID"]))
             {
                 int x = Convert.ToInt32(Session["userID"]);
                 int y = Convert.ToInt32(Session["groupID"]);
-                UserGroup userGroup = (from d in userDBContext.UserGroups
-                                       where d.UserId == x && d.GroupId == y
-                                       select d).Single();
-                userDBContext.UserGroups.Remove(userGroup);
-                userDBContext.SaveChanges();
+
+                userGroupRepository.RemoveUserGroup(x, y);
 
                 Session["groupID"] = null;
                 GridView1.SelectedIndex = -1;
@@ -51,17 +48,10 @@ namespace UsersWebAPI
         protected void btnClear_Click(object sender, EventArgs e)
         {
             lblMessage.Text = "";
-            UserDBContext userDBContext = new UserDBContext();
             if (!string.IsNullOrEmpty((string)Session["userID"]))
             {
                 int x = Convert.ToInt32(Session["userID"]);
-                List<UserGroup> userGroups = (from d in userDBContext.UserGroups
-                                        where d.UserId == x
-                                        select d).ToList() ;
-
-                foreach (var userGroup in userGroups)
-                    userDBContext.UserGroups.Remove(userGroup);
-                userDBContext.SaveChanges();
+                userGroupRepository.ClearUserGroups(x);
 
                 Session["groupID"] = null;
                 GridView1.SelectedIndex = -1;

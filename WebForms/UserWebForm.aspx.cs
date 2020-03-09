@@ -10,6 +10,7 @@ namespace UsersWebAPI
 {
     public partial class UserWebForm : System.Web.UI.Page
     {
+        UserRepository userRepository = new UserRepository();
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -19,10 +20,8 @@ namespace UsersWebAPI
                 if (!string.IsNullOrEmpty((string)Session["userID"]))
                 {
                     int x = Convert.ToInt32(Session["userID"]);
-                    UserDBContext userDBContext = new UserDBContext();
-                    User user = (from d in userDBContext.Users
-                                 where d.UserId == x
-                                 select d).Single();
+
+                    User user = userRepository.SelectUser(x);
 
                     for (int i = 0; i < GridView1.Rows.Count; i++)
                     {
@@ -78,15 +77,10 @@ namespace UsersWebAPI
         {
             lblMessage.Text = "";
 
-            UserDBContext userDBContext = new UserDBContext();
             if (!string.IsNullOrEmpty((string)Session["userID"]))
             {
                 int x = Convert.ToInt32(Session["userID"]);
-                User user = (from d in userDBContext.Users
-                             where d.UserId == x
-                             select d).Single();
-                userDBContext.Users.Remove(user);
-                userDBContext.SaveChanges();
+                userRepository.RemoveUser(x);
 
                 Session["userID"] = null;
                 GridView1.SelectedIndex = -1;

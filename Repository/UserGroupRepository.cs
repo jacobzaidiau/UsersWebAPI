@@ -55,5 +55,24 @@ namespace UsersWebAPI
             }
             return userGroups;
         }
+
+        public void RemoveUserGroup(int userId, int groupId) 
+        {
+            UserGroup userGroup = (from d in userDBContext.UserGroups
+                                   where d.UserId == userId && d.GroupId == groupId
+                                   select d).Single();
+            userDBContext.UserGroups.Remove(userGroup);
+            userDBContext.SaveChanges();
+        }
+        public void ClearUserGroups(int userId) 
+        {
+            List<UserGroup> userGroups = (from d in userDBContext.UserGroups
+                                          where d.UserId == userId
+                                          select d).ToList();
+
+            foreach (var userGroup in userGroups)
+                userDBContext.UserGroups.Remove(userGroup);
+            userDBContext.SaveChanges();
+        }
     }
 }

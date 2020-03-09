@@ -10,6 +10,7 @@ namespace UsersWebAPI.WebForms
 {
     public partial class GroupWebForm : System.Web.UI.Page
     {
+        GroupRepository groupRepository = new GroupRepository();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -17,10 +18,7 @@ namespace UsersWebAPI.WebForms
                 if (!string.IsNullOrEmpty((string)Session["groupID"]))
                 {
                     int x = Convert.ToInt32(Session["groupID"]);
-                    UserDBContext userDBContext = new UserDBContext();
-                    Group group = (from d in userDBContext.Groups
-                                   where d.GroupId == x
-                                   select d).Single();
+                    Group group = groupRepository.SelectGroup(x);
 
                     for (int i = 0; i < GridView1.Rows.Count; i++)
                     {
@@ -63,15 +61,10 @@ namespace UsersWebAPI.WebForms
         protected void btnRemove_Click(object sender, EventArgs e)
         {
             lblMessage.Text = "";
-            UserDBContext userDBContext = new UserDBContext();
             if (!string.IsNullOrEmpty((string)Session["groupID"]))
             {
                 int x = Convert.ToInt32(Session["groupID"]);
-                Group group = (from d in userDBContext.Groups
-                             where d.GroupId == x
-                             select d).Single();
-                userDBContext.Groups.Remove(group);
-                userDBContext.SaveChanges();
+                groupRepository.RemoveGroup(x);
 
                 Session["groupID"] = null;
                 GridView1.SelectedIndex = -1;
