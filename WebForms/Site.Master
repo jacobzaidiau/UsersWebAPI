@@ -7,6 +7,7 @@
     <title></title>
     <link rel="stylesheet" runat="server" type="text/css" href="stylesheet.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -26,17 +27,17 @@
                     <asp:TableHeaderCell><asp:Label ID="lblProjects" runat="server" CssClass="footerTableHeaderText" Text="My Projects"></asp:Label></asp:TableHeaderCell>
                 </asp:TableHeaderRow>
                 <asp:TableRow>
-                    <asp:TableCell CssClass="footerPadRight"><asp:HyperLink ID="lnkCompany" runat="server" CssClass="footerTableItemText">Core Practice</asp:HyperLink></asp:TableCell>
+                    <asp:TableCell CssClass="footerPadRight"><asp:HyperLink ID="lnkCompany" runat="server" CssClass="footerTableItemText" NavigateUrl="https://www.corepractice.com.au/">Core Practice</asp:HyperLink></asp:TableCell>
                     <asp:TableCell CssClass="footerPadRight"><asp:HyperLink ID="lnkWebsite" runat="server" CssClass="footerTableItemText" NavigateUrl="https://jacob.zaidi.id.au/">Website</asp:HyperLink></asp:TableCell>
                     <asp:TableCell><asp:HyperLink ID="lnkProject1" runat="server" CssClass="footerTableItemText" NavigateUrl="https://github.com/jacobzaidiau/UsersWebAPI">User Management</asp:HyperLink></asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
-                    <asp:TableCell CssClass="footerPadRight"><asp:HyperLink ID="lnkEmail" runat="server" CssClass="footerTableItemText">jacob@zaidi.id.au</asp:HyperLink></asp:TableCell>
+                    <asp:TableCell CssClass="footerPadRight"><asp:HyperLink ID="lnkEmail" runat="server" CssClass="footerTableItemText" NavigateUrl="mailto:jacob@zaidi.id.au">jacob@zaidi.id.au</asp:HyperLink></asp:TableCell>
                     <asp:TableCell CssClass="footerPadRight"><asp:HyperLink ID="lnkLinkedIn" runat="server" CssClass="footerTableItemText" NavigateUrl="https://www.linkedin.com/in/jacobzaidi">LinkedIn</asp:HyperLink></asp:TableCell>
                     <asp:TableCell><asp:HyperLink ID="lnkProject2" runat="server" CssClass="footerTableItemText" NavigateUrl="https://github.com/jacobzaidiau/Ticket-Tracker">Ticket Tracker</asp:HyperLink></asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
-                    <asp:TableCell CssClass="footerPadRight"><asp:HyperLink ID="lnkMobile" runat="server" CssClass="footerTableItemText">0466 450 140</asp:HyperLink></asp:TableCell>
+                    <asp:TableCell CssClass="footerPadRight"><asp:HyperLink ID="lnkMobile" runat="server" CssClass="footerTableItemText" NavigateUrl="tel:0466450140">0466 450 140</asp:HyperLink></asp:TableCell>
                     <asp:TableCell CssClass="footerPadRight"><asp:HyperLink ID="lnkGitHub" runat="server" CssClass="footerTableItemText" NavigateUrl="https://github.com/jacobzaidiau">GitHub</asp:HyperLink></asp:TableCell>
                     <asp:TableCell><asp:HyperLink ID="lnkProject3" runat="server" CssClass="footerTableItemText" NavigateUrl="https://github.com/jacobzaidiau/TriangleServerAndMVC">Triangle Tool</asp:HyperLink></asp:TableCell>
                 </asp:TableRow>

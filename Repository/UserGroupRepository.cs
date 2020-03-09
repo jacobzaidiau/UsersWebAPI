@@ -36,5 +36,24 @@ namespace UsersWebAPI
                                    select g).Count();
             return userGroupsCount;
         }
+
+        public List<UserGroup> AddUserGroups(int userId, List<int> groups) 
+        {
+            List<UserGroup> userGroups = (from d in userDBContext.UserGroups
+                                          where d.UserId == userId && groups.Contains(d.GroupId)
+                                          select d).ToList();
+
+            if (userGroups.Count == 0)
+            {
+                foreach (int group in groups)
+                    userDBContext.UserGroups.Add(new UserGroup()
+                    {
+                        UserId = userId,
+                        GroupId = group
+                    });
+                userDBContext.SaveChanges();
+            }
+            return userGroups;
+        }
     }
 }

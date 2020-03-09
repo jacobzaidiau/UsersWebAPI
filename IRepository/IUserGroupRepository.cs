@@ -11,5 +11,8 @@ namespace UsersWebAPI.IRepository
         IEnumerable<Group> GetUserGroups(string userId, int startRowIndex, int maximumRows);
         int GetUserGroupsTotalCount(string userId, int startRowIndex, int maximumRows);
 
+        List<UserGroup> AddUserGroups(int userId, List<int> groups);
+
+
     }
 }
