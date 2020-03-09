@@ -68,6 +68,8 @@ namespace UsersWebAPI.WebForms
 
                 Session["groupID"] = null;
                 GridView1.SelectedIndex = -1;
+                GridView1.PageIndex = 0;
+
             }
             else
             {

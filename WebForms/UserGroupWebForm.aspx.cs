@@ -36,6 +36,7 @@ namespace UsersWebAPI
 
                 Session["groupID"] = null;
                 GridView1.SelectedIndex = -1;
+                GridView1.PageIndex = 0;
                 Page_Load(null, null);
 
             }
@@ -55,6 +56,7 @@ namespace UsersWebAPI
 
                 Session["groupID"] = null;
                 GridView1.SelectedIndex = -1;
+                GridView1.PageIndex = 0;
                 Page_Load(null, null);
             }
             else

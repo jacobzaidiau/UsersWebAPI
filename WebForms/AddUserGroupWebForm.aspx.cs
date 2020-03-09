@@ -44,9 +44,18 @@ namespace UsersWebAPI
         {
             lblMessage.Text = "";
 
-            int x = Convert.ToInt32(Session["userID"]);
+            foreach (GridViewRow row in GridView1.Rows)
+            {
+                CheckBox checkBox = (CheckBox)row.Cells[1].Controls[1];
+                if (checkBox.Checked)
+                    if (!groups.Any(x => x == Convert.ToInt32(row.Cells[0].Text)))
+                        groups.Add(Convert.ToInt32(row.Cells[0].Text));
+            }
 
-            List<UserGroup> userGroups = userGroupRepository.AddUserGroups(x, groups);
+            int userId = Convert.ToInt32(Session["userID"]);
+
+
+            List<UserGroup> userGroups = userGroupRepository.AddUserGroups(userId, groups);
             if (userGroups.Count == 0)
             {
                 Button button = (Button)sender;

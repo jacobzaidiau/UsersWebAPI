@@ -85,7 +85,7 @@ namespace UsersWebAPI
 
                 Session["userID"] = null;
                 GridView1.SelectedIndex = -1;
-
+                GridView1.PageIndex = 0;
                 bindGridView();
             }
             else

@@ -10,6 +10,8 @@
     <asp:Panel runat="server" CssClass="row">
         <asp:Panel runat="server" CssClass="col-md-12">
             <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnRowDataBound="GridView1_RowDataBound" AutoGenerateColumns="False" DataSourceID="ObjectDataSource3" AllowPaging="True" HorizontalAlign="Center">
+                <PagerSettings Mode="NextPreviousFirstLast" FirstPageText="First " NextPageText="Next " PreviousPageText="Previous " LastPageText="Last " />
+                <PagerStyle CssClass="cssPager" />
                 <AlternatingRowStyle BackColor="White" />
                 <Columns>
                     <asp:BoundField DataField="GroupId" HeaderText="GroupId" SortExpression="GroupId"
