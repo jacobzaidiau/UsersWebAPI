@@ -12,6 +12,16 @@ Essentially, like Users and Groups have a Many to Many relationship, Groups and 
 
 For the password hashing, I decided to go with Argon2, because it has a positive reputation among cryptographers and won the Password Hashing Contest in 2015.
 
+## Current Bugs
+
+1. The password does not provide accurate feedback to the user as of yet.
+
+2. When removing a row in a page with only one row, the page displays as empty and it's not possible to move pages without exiting and entering the page.
+
+## Future Plans
+
+I would like to have implemented a Permissions table with a Many to Many relationship to the Groups table.
+
 ## Instructions for how to develop, use, and test the code.
 
 Download the project, build and run it in Visual Studio 2019.
