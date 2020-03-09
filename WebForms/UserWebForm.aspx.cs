@@ -43,6 +43,7 @@ namespace UsersWebAPI
             if (!string.IsNullOrEmpty((string)Session["userID"]))
             {
                 Button button = (Button)sender;
+                Session["groupID"] = null;
                 Session["senderID"] = button.ID;
                 Response.Redirect(Resources.UserGroupWebForm, false);
             }
