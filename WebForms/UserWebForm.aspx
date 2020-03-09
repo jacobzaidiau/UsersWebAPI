@@ -56,41 +56,48 @@
 &nbsp;&nbsp;&nbsp;
         <br />
     <br />
-    <asp:Label ID="lblMessage" runat="server" Font-Bold="True" ForeColor="Red"></asp:Label>
-    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None"
-        OnPageIndexChanging="GridView1_PageIndexChanging"
-        OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnRowDataBound="GridView1_RowDataBound" AllowPaging="True" PageSize="5" DataSourceID="ObjectDataSource1" HorizontalAlign="Center">
-        <AlternatingRowStyle BackColor="#FAFAFA" />
-        <Columns>
-            <asp:BoundField DataField="UserId" HeaderText="User Id" SortExpression="UserId"
-                ItemStyle-CssClass="hidden"
-                HeaderStyle-CssClass="hidden">
-                <HeaderStyle CssClass="hidden"></HeaderStyle>
-
-                <ItemStyle CssClass="hidden"></ItemStyle>
-            </asp:BoundField>
-            <asp:BoundField DataField="Username" HeaderText="Username" SortExpression="Username" />
-            <asp:BoundField DataField="Firstname" HeaderText="First Name" SortExpression="Firstname" />
-            <asp:BoundField DataField="Lastname" HeaderText="Last name" SortExpression="Lastname" />
-            <asp:BoundField DataField="DateOfBirth" HeaderText="Date Of Birth" SortExpression="DateOfBirth" />
-            <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
-            <asp:BoundField DataField="Phone" HeaderText="Phone" SortExpression="Phone" />
-            <asp:BoundField DataField="Mobile" HeaderText="Mobile" SortExpression="Mobile" />
-        </Columns>
-        <EditRowStyle BackColor="#7C6F57" />
-        <FooterStyle BackColor="#F0F1F1" Font-Bold="True" ForeColor="#6F6F6F" />
-        <HeaderStyle BackColor="#F0F1F1" Font-Bold="True" ForeColor="#6F6F6F" CssClass="uppercase" HorizontalAlign="Left" />
-        <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" />
-        <RowStyle BackColor="#FAFAFA" />
-        <SelectedRowStyle BackColor="#C5BBAF" Font-Bold="True" ForeColor="#333333" />
-        <SortedAscendingCellStyle BackColor="#F8FAFA" />
-        <SortedAscendingHeaderStyle BackColor="#246B61" />
-        <SortedDescendingCellStyle BackColor="#D4DFE1" />
-        <SortedDescendingHeaderStyle BackColor="#15524A" />
-    </asp:GridView>
-    <br />
-    <div>
-        <asp:Panel ID="Panel1" runat="server" HorizontalAlign="Center">
+    <asp:Panel runat="server" CssClass="row">
+        <asp:Panel runat="server" CssClass="col-md-12">
+            <asp:Label ID="lblMessage" runat="server" Font-Bold="True" ForeColor="Red"></asp:Label>
+        </asp:Panel>
+    </asp:Panel>
+    <asp:Panel runat="server" CssClass="row">
+        <asp:Panel runat="server" CssClass="col-md-12">
+            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None"
+                OnPageIndexChanging="GridView1_PageIndexChanging"
+                OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnRowDataBound="GridView1_RowDataBound" AllowPaging="True" PageSize="5" DataSourceID="ObjectDataSource1" HorizontalAlign="Center">
+                <AlternatingRowStyle BackColor="#FAFAFA" />
+                <Columns>
+                    <asp:BoundField DataField="UserId" HeaderText="User Id" SortExpression="UserId"
+                        ItemStyle-CssClass="hidden"
+                        HeaderStyle-CssClass="hidden">
+                        <HeaderStyle CssClass="hidden"></HeaderStyle>
+                        <ItemStyle CssClass="hidden"></ItemStyle>
+                    </asp:BoundField>
+                    <asp:BoundField DataField="Username" HeaderText="Username" SortExpression="Username" />
+                    <asp:BoundField DataField="Firstname" HeaderText="First Name" SortExpression="Firstname" />
+                    <asp:BoundField DataField="Lastname" HeaderText="Last name" SortExpression="Lastname" />
+                    <asp:BoundField DataField="DateOfBirth" HeaderText="Date Of Birth" SortExpression="DateOfBirth" />
+                    <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
+                    <asp:BoundField DataField="Phone" HeaderText="Phone" SortExpression="Phone" />
+                    <asp:BoundField DataField="Mobile" HeaderText="Mobile" SortExpression="Mobile" />
+                </Columns>
+                <EditRowStyle BackColor="#7C6F57" />
+                <FooterStyle BackColor="#F0F1F1" Font-Bold="True" ForeColor="#6F6F6F" />
+                <HeaderStyle BackColor="#F0F1F1" Font-Bold="True" ForeColor="#6F6F6F" CssClass="uppercase" HorizontalAlign="Left" />
+                <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" />
+                <RowStyle BackColor="#FAFAFA" />
+                <SelectedRowStyle BackColor="#C5BBAF" Font-Bold="True" ForeColor="#333333" />
+                <SortedAscendingCellStyle BackColor="#F8FAFA" />
+                <SortedAscendingHeaderStyle BackColor="#246B61" />
+                <SortedDescendingCellStyle BackColor="#D4DFE1" />
+                <SortedDescendingHeaderStyle BackColor="#15524A" />
+            </asp:GridView>
+            <br />
+        </asp:Panel>
+    </asp:Panel>
+    <asp:Panel runat="server" CssClass="row">
+        <asp:Panel runat="server" CssClass="col-md-12" HorizontalAlign="Center">
             <asp:Button ID="btnGroups" runat="server" OnClick="btnGroups_Click" Text="Groups" CssClass="btnSubmit" />
             &nbsp;&nbsp;&nbsp;
         <asp:Button ID="btnCreate" runat="server" OnClick="btnCreate_Click" Text="Create" CssClass="btnSubmit" />
@@ -100,6 +107,12 @@
         <asp:Button ID="btnRemove" runat="server" OnClick="btnRemove_Click" Text="Remove" CssClass="btnSubmit" />
             &nbsp;&nbsp;&nbsp;
         <asp:Button ID="btnBack" runat="server" OnClick="btnBack_Click" Text="Back" CssClass="btnBack" />
+        </asp:Panel>
+    </asp:Panel>
+
+    <br />
+    <div>
+        <asp:Panel ID="Panel1" runat="server" HorizontalAlign="Center">
         </asp:Panel>
         <br />
     </div>

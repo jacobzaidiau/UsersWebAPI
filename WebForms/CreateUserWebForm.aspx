@@ -51,8 +51,15 @@
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <br />
         <br />
-        <asp:Button ID="btnSubmit" OnClick="btnSubmit_Click" runat="server" Text="Submit" CssClass="btnSubmit" />
-        &nbsp;&nbsp;&nbsp;
-            <asp:Button ID="btnBack" OnClick="btnBack_Click" runat="server" Text="Back" CssClass="btnBack" />
+
     </div>
+    <asp:Panel runat="server" CssClass="row">
+        <asp:Panel runat="server" CssClass="col-md-12" HorizontalAlign="Center">
+            <asp:Button ID="btnSubmit" OnClick="btnSubmit_Click" runat="server" Text="Submit" CssClass="btnSubmit" />
+            &nbsp;&nbsp;&nbsp;
+            <asp:Button ID="btnBack" OnClick="btnBack_Click" runat="server" Text="Back" CssClass="btnBack" />
+            <br />
+            <br />
+        </asp:Panel>
+    </asp:Panel>
 </asp:Content>

@@ -13,8 +13,17 @@
             <asp:TextBox ID="txtDescription" runat="server"></asp:TextBox>
         <br />
         <br />
-        <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" Text="Submit" CssClass="btnSubmit" />
-        &nbsp;&nbsp;&nbsp;
-            <asp:Button ID="btnBack" runat="server" OnClick="btnBack_Click" Text="Back" CssClass="btnBack" />
+
     </div>
+
+
+    <asp:Panel runat="server" CssClass="row">
+        <asp:Panel runat="server" CssClass="col-md-12" HorizontalAlign="Center">
+            <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" Text="Submit" CssClass="btnSubmit" />
+            &nbsp;&nbsp;&nbsp;
+            <asp:Button ID="btnBack" runat="server" OnClick="btnBack_Click" Text="Back" CssClass="btnBack" />
+        </asp:Panel>
+    </asp:Panel>
+    <br />
+    <br />
 </asp:Content>
