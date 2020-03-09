@@ -54,7 +54,7 @@ namespace UsersWebAPI.WebForms
             }
             else 
             {
-                lblMessage.Text = "Please select a row first.";
+                lblMessage.Text = "Please select a group first.";
             }
         }
 
@@ -71,7 +71,7 @@ namespace UsersWebAPI.WebForms
             }
             else
             {
-                lblMessage.Text = "Please select a row first.";
+                lblMessage.Text = "Please select a group first.";
             }
         }
 
@@ -87,7 +87,7 @@ namespace UsersWebAPI.WebForms
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(GridView1, "Select$" + e.Row.RowIndex);
-                e.Row.ToolTip = "Click to select this row.";
+                e.Row.ToolTip = "Click to select this group.";
             }
 
         }

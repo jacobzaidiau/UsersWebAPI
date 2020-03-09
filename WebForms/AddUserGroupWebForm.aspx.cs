@@ -92,7 +92,6 @@ namespace UsersWebAPI
             }
         }
 
-
         protected void GridView1_PageIndexChanged(object sender, EventArgs e)
         {
 

@@ -48,7 +48,7 @@ namespace UsersWebAPI
             }
             else 
             {
-                lblMessage.Text = "Please select a row first.";
+                lblMessage.Text = "Please select a user first.";
             }
         }
 
@@ -69,7 +69,7 @@ namespace UsersWebAPI
             }
             else 
             {
-                lblMessage.Text = "Please select a row first.";
+                lblMessage.Text = "Please select a user first.";
             }
         }
 
@@ -89,7 +89,7 @@ namespace UsersWebAPI
             }
             else
             {
-                lblMessage.Text = "Please select a row first.";
+                lblMessage.Text = "Please select a user first.";
             }
 
         }
@@ -109,7 +109,7 @@ namespace UsersWebAPI
             {
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(GridView1, "Select$" + e.Row.RowIndex);
 
-                e.Row.ToolTip = "Click to select this row.";
+                e.Row.ToolTip = "Click to select this user.";
             }
 
         }
