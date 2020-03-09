@@ -4,6 +4,8 @@ This is a user management software designed to add users to the system, who may 
 
 ## Design Choices
 
+The colours #3bd9ba and #f05122 are prevalent on the Core Practice website, and the #3bd9ba color in particular appears to be the colour Core Practice identifies itself with, similar to the purple of Cadbury or the red of Kit Kat. I have used these colours where possible, although the tables are formatted based on what I could see from screenshots in the support section of the core practice website.
+
 I used buttons to navigate throughout the project which is similar to how the software I currently use at work navigates through pages. I noticed in screenshots from the Support section that Core Dental uses the left side of the screen for navigation, which I think would've been a more user friendly method of navigating around the page.
 
 I also noticed that there is an additional entity in Core Practice's database through the support which related directly to this technical test - Permissions.
@@ -14,7 +16,7 @@ For the password hashing, I decided to go with Argon2, because it has a positive
 
 ## Current Bugs
 
-1. The password does not provide accurate feedback to the user as of yet.
+1. The password does not provide accurate feedback to the user as of yet, and does so far too slowly. I will do this by using Angular.js to bind the password data to the password feedback label. Clicking submit without waiting for the feedback results in the application believing there has been no input inserted into the password field at all.
 
 2. The Date Of Birth does not have a calendar tool to help users assign a date of birth in the correct format.
 
