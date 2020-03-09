@@ -47,8 +47,23 @@ namespace UsersWebAPI.WebForms
             lblMessage.Text = "";
             string username = txtUsername.Text;
             string password = (string)Session["password"];
-            DateTime? dateOfBirth = string.IsNullOrEmpty(txtDateOfBirth.Text) ? null : (DateTime?)DateTime.Parse(txtDateOfBirth.Text);
+            DateTime? dateOfBirth = null;
+            DateTime parseDateOfBirth;
 
+            if (!string.IsNullOrEmpty(txtDateOfBirth.Text))
+            {
+                bool valid = DateTime.TryParse(txtDateOfBirth.Text, out parseDateOfBirth);
+                if (!valid)
+                {
+                    lblMessage.Text = "Invalid Date of Birth, please use yyyy-mm-dd format";
+                    return;
+                }
+                else 
+                {
+                    dateOfBirth = parseDateOfBirth;
+                }
+            }
+            
 
             if (string.IsNullOrEmpty(password))
                 password = "";

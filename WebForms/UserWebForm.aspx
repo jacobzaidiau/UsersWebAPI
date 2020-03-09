@@ -77,7 +77,7 @@
                     <asp:BoundField DataField="Username" HeaderText="Username" SortExpression="Username" />
                     <asp:BoundField DataField="Firstname" HeaderText="First Name" SortExpression="Firstname" />
                     <asp:BoundField DataField="Lastname" HeaderText="Last name" SortExpression="Lastname" />
-                    <asp:BoundField DataField="DateOfBirth" HeaderText="Date Of Birth" SortExpression="DateOfBirth" />
+                    <asp:BoundField DataField="DateOfBirth" HeaderText="Date Of Birth" SortExpression="DateOfBirth" DataFormatString="{0:d}"/>
                     <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
                     <asp:BoundField DataField="Phone" HeaderText="Phone" SortExpression="Phone" />
                     <asp:BoundField DataField="Mobile" HeaderText="Mobile" SortExpression="Mobile" />
