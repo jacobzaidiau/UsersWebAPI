@@ -21,7 +21,21 @@ namespace UsersWebAPI
 
         public IEnumerable<User> GetUsers(string firstname, string lastname, string dateOfBirth, string email, string phone, string mobile, int startRowIndex, int maximumRows)
         {
-            DateTime? dateOfBirthAsDate = string.IsNullOrEmpty(dateOfBirth) ? null : (DateTime?)DateTime.Parse(dateOfBirth);
+            DateTime? dateOfBirthAsDate = null;
+            DateTime parseDateOfBirth;
+
+            if (!string.IsNullOrEmpty(dateOfBirth))
+            {
+                bool valid = DateTime.TryParse(dateOfBirth, out parseDateOfBirth);
+                if (!valid)
+                {
+                    return new List<User>();
+                }
+                else
+                {
+                    dateOfBirthAsDate = parseDateOfBirth;
+                }
+            }
 
             List<User> users = (from d in userDBContext.Users
                                 where d.Firstname.Contains(firstname) && d.Lastname.Contains(lastname) && (dateOfBirthAsDate == null || d.DateOfBirth == dateOfBirthAsDate)
@@ -31,8 +45,21 @@ namespace UsersWebAPI
         }
         public int GetUsersTotalCount(string firstname, string lastname, string dateOfBirth, string email, string phone, string mobile, int startRowIndex, int maximumRows)
         {
-            DateTime? dateOfBirthAsDate = string.IsNullOrEmpty(dateOfBirth) ? null : (DateTime?)DateTime.Parse(dateOfBirth);
+            DateTime? dateOfBirthAsDate = null;
+            DateTime parseDateOfBirth;
 
+            if (!string.IsNullOrEmpty(dateOfBirth))
+            {
+                bool valid = DateTime.TryParse(dateOfBirth, out parseDateOfBirth);
+                if (!valid)
+                {
+                    return 0;
+                }
+                else
+                {
+                    dateOfBirthAsDate = parseDateOfBirth;
+                }
+            }
             return (from d in userDBContext.Users
                     where d.Firstname.Contains(firstname) && d.Lastname.Contains(lastname) && (dateOfBirthAsDate == null || d.DateOfBirth == dateOfBirthAsDate)
                     && d.Email.Contains(email) && (phone == "" || d.Phone.Contains(phone)) && (mobile == "" || d.Mobile.Contains(mobile))
