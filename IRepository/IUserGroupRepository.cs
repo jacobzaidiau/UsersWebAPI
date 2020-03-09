@@ -12,7 +12,8 @@ namespace UsersWebAPI.IRepository
         int GetUserGroupsTotalCount(string userId, int startRowIndex, int maximumRows);
 
         List<UserGroup> AddUserGroups(int userId, List<int> groups);
-
+        void RemoveUserGroup(int userId, int groupId);
+        void ClearUserGroups(int userId);
 
     }
 }
