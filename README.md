@@ -18,7 +18,9 @@ For the password hashing, I decided to go with Argon2, because it has a positive
 
 2. When removing a row in a page with only one row, the page displays as empty and it's not possible to move pages without exiting and entering the page.
 
-3. I had not added any comments while designing this project. Commenting is an important step in the software development process and I will add them now that I've completed all required tasks.
+3. The Date Of Birth does not have a calendar tool to help users assign a date of birth in the correct format.
+
+4. I had not added any comments while designing this project. Commenting is an important step in the software development process and I will add them now that I've completed all required tasks.
 
 ## Future Plans
 
